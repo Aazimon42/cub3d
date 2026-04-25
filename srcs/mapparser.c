@@ -3,14 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   mapparser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malebrun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:02:40 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/25 17:53:37 by malebrun         ###   ########.fr       */
+/*   Updated: 2026/04/25 18:46:40 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cube3d.h"
+#include "../includes/Cube3D.h"
+
+int	check_images(t_game *game)
+{
+	int	len;
+
+	if (!(game->textures->no && game->textures->so
+		&& game->textures->ea && game->textures->we))
+	{
+		print_error("One or more texture missing\n");
+		return (0);
+	}
+	if (game->textures->no->width != 64 || game->textures->no->height != 64
+		|| game->textures->so->width != 64 || game->textures->so->height != 64
+		|| game->textures->ea->width != 64 || game->textures->ea->height != 64
+		|| game->textures->we->width != 64 || game->textures->we->height != 64)
+	{
+		print_error("Textures should be 64x64\n");
+		return (0);
+	}
+	return (1);
+}
+
+int	get_textures(t_game *game, char **content)
+{
+	int	i;
+
+	i = 0;
+	while (content[i] && content[i][0] == '\n')
+		i++;
+	if (content[i] && !ft_strncmp(content[i], "NO", 2))
+		game->textures->no = mlx_xpm_file_to_image(game->mlxptr, content[i] + 3,
+			&game->textures->no->width, &game->textures->no->height);
+	while (content[i] && content[i][0] == '\n')
+		i++;
+	if (content[i] && !ft_strncmp(content[i], "SO", 2))
+		game->textures->so = mlx_xpm_file_to_image(game->mlxptr, content[i] + 3,
+			&game->textures->so->width, &game->textures->so->height);
+	while (content[i] && content[i][0] == '\n')
+		i++;
+	if (content[i] && !ft_strncmp(content[i], "EA", 2))
+		game->textures->ea = mlx_xpm_file_to_image(game->mlxptr, content[i] + 3,
+			&game->textures->ea->width, &game->textures->ea->height);
+	while (content[i] && content[i][0] == '\n')
+		i++;
+	if (content[i] && !ft_strncmp(content[i], "WE", 2))
+		game->textures->we = mlx_xpm_file_to_image(game->mlxptr, content[i] + 3,
+			&game->textures->we->width, &game->textures->we->height);
+	return (i);
+}
 
 char **get_content(char *name)
 {
@@ -34,13 +83,17 @@ char **get_content(char *name)
 	return (ft_split(content, '\n'));
 }
 
-int parse_file(char *name)
+int parse_file(t_game *game, char *name)
 {
 	char	**content;
-	t_game	game;
 
 	content = get_content(name);
 	if (!content || !content[0])
 		return (-1);
-
+	game->mlxptr = mlx_init();
+	if (!game->mlxptr)
+		return (-1);
+	get_textures(game, content);
+	if (!check_images(game))
+		return (-1);
 }
