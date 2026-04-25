@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malebrun <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:54:39 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/25 18:45:50 by malebrun         ###   ########.fr       */
+/*   Updated: 2026/04/25 19:14:26 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cube3d.h"
+#include "../includes/Cube3D.h"
 
 
 static void skipto(char *line, int *i, char toskip)
@@ -59,9 +59,9 @@ int	ParseLine(char *line, t_game *game)
 		|| colors.green > 255 || colors.blue < 0 || colors.blue > 255)
 		return (0);
 	if (line[0] == 'F')
-		game->fcolor = colors;
+		game->fcolor = &colors;
 	else 
-		game->ccolor = colors;
+		game->ccolor = &colors;
 	return (1);
 }
 
@@ -74,13 +74,14 @@ int ParseRGBLine(t_game *game)
 		i++;
 	if (!game->map[i])
 		return (-1);
-	if (!(game->map[i][0] == 'F' && (ParseLine(game->map[i], game)))
+	if (!(game->map[i][0] == 'F' && (ParseLine(game->map[i], game))))
 		return (-1);
 	i++;
 	while (game->map[i] && game->map[i][0] == '\n')
 		i++;
 	if (!game->map[i])
 		return (-1);
-	if (!(game->map[i][0] == 'C' && (ParseLine(game->map[i], game)))
+	if (!(game->map[i][0] == 'C' && (ParseLine(game->map[i], game))))
 		return (-1);
+	return (i);
 }

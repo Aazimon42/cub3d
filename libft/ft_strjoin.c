@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/25 18:33:25 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/04/25 19:35:56 by edi-maio         ###   ########.fr       */
+/*   Created: 2025/10/15 16:04:30 by edi-maio          #+#    #+#             */
+/*   Updated: 2026/04/25 19:16:39 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Cube3D.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-    t_game game;
+	char	*str;
+	size_t	i;
 
-    if (ac != 2)
-    {
-        print_error("Program takes one .cub file as argument\n");
-        return (1);
-    }
-    if (parse_file(&game, av[1]) == -1)
-    {
-        free_all(&game);
-        return (1);
-    }
-    return (0);
+	if (!s2)
+		return (0);
+	if (!s1)
+		return (ft_strdup(s2));
+	i = 0;
+	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!str)
+		return (0);
+	while (s1[0])
+	{
+		str[i] = s1[0];
+		s1++;
+		i++;
+	}
+	while (s2[0])
+	{
+		str[i] = s2[0];
+		s2++;
+		i++;
+	}
+	str[i] = 0;
+	return (str);
 }

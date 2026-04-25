@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 18:36:11 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/04/25 18:38:12 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/04/25 20:23:49 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,14 @@ void    free_all(t_game *game)
 {
     if (game->map)
         free2d(game->map);
-    if (game->textures)
-    {
-        if (game->textures->no)
-            mlx_destroy_image(game->mlxptr, game->textures->no->img);
-        if (game->textures->so)
-            mlx_destroy_image(game->mlxptr, game->textures->so->img);
-        if (game->textures->ea)
-            mlx_destroy_image(game->mlxptr, game->textures->ea->img);
-        if (game->textures->we)
-            mlx_destroy_image(game->mlxptr, game->textures->we->img);
-        free(game->textures);
-    }
+    if (game->textures.no.img)
+        mlx_destroy_image(game->mlxptr, game->textures.no.img);
+    if (game->textures.so.img)
+        mlx_destroy_image(game->mlxptr, game->textures.so.img);
+    if (game->textures.ea.img)
+        mlx_destroy_image(game->mlxptr, game->textures.ea.img);
+    if (game->textures.we.img)
+        mlx_destroy_image(game->mlxptr, game->textures.we.img);
     if (game->mlxwinptr)
         mlx_destroy_window(game->mlxptr, game->mlxwinptr);
     if (game->mlxptr)
