@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:54:39 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/26 19:33:09 by malebrun         ###   ########.fr       */
+/*   Updated: 2026/04/26 19:58:51 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,5 @@ int ParseRGBLine(char **content, t_game *game, int i)
 		return (-1);
 	if (!(content[i][0] == 'C' && (ParseLine(content[i], game))))
 		return (-1);
-	return (i);
-
+	return (i + 1);
 }

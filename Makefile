@@ -6,7 +6,7 @@
 #    By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/25 19:03:13 by edi-maio          #+#    #+#              #
-#    Updated: 2026/04/25 19:15:13 by edi-maio         ###   ########.fr        #
+#    Updated: 2026/04/26 19:43:39 by edi-maio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRC_DIR = srcs/
 SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)mapparser.c \
 	   $(SRC_DIR)rgb.c \
-	   $(SRC_DIR)utils.c
+	   $(SRC_DIR)utils.c \
+	   $(SRC_DIR)map.c
 
 MLX = mlx_linux/libmlx.a
 MLX_FLAGS = -lX11 -lXext

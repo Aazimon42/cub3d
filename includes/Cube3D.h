@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:30:06 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/26 18:49:01 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/04/26 20:04:14 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_game
 	float		dy;
 	void		*mlxptr;
 	void		*mlxwinptr;
+	char		startdirection;
 	t_rgb		*fcolor;
 	t_rgb		*ccolor;
 	t_texture	textures;
@@ -62,5 +63,6 @@ int		parse_file(t_game *game, char *name);
 void    free_all(t_game *game);
 int 	ParseRGBLine(char **content, t_game *game, int i);
 void    free2d(char **array);
+int 	get_map(t_game *game, char **content, int i);
 
 #endif
