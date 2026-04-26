@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:02:40 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/26 19:10:26 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/04/26 19:35:12 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,11 @@ int parse_file(t_game *game, char *name)
 		return (-1);
 	printf("textures good\n");
 	game->map = content;
-	ParseRGBLine(content, game, i);
+	if (ParseRGBLine(content, game, i) == -1)
+	{
+		printf("color bad");
+		return (-1);
+	}
 	printf("%d, %d, %d\n", game->fcolor->red, game->fcolor->green, game->fcolor->blue);
 	free2d(content);
 	return (0);

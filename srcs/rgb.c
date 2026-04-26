@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:54:39 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/26 19:17:07 by malebrun         ###   ########.fr       */
+/*   Updated: 2026/04/26 19:33:09 by malebrun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,23 @@ static void skipto(char *line, int *i, char toskip)
 	if (line[*i] == toskip)
 		(*i)++;
 }
+
 static int isint(char *text, char after)
 {
-	int i;
+	int i = 0;
+	int has_digit = 0;
 
-	i = 0;
 	if (text[i] == ',')
 		i++;
 	while (text[i] && text[i] == ' ')
 		i++;
 	while (text[i] && text[i] >= '0' && text[i] <= '9')
+	{
+		has_digit = 1;
 		i++;
+	}
+	if (!has_digit)
+		return (0);
 	if (text[i] == after)
 		return (1);
 	return (0);
