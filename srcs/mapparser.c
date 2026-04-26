@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:02:40 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/26 19:06:48 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/04/26 19:10:26 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ int	get_textures(t_game *game, char **content)
 	int	i;
 
 	i = 0;
+	game->textures.no.img = NULL;
+	game->textures.so.img = NULL;
+	game->textures.ea.img = NULL;
+	game->textures.we.img = NULL;
 	while (content[i] && content[i][0] == '\n')
 		i++;
 	if (content[i] && ft_strlen(content[i]) > 2 && !ft_strncmp(content[i], "NO", 2))
@@ -106,8 +110,6 @@ int parse_file(t_game *game, char *name)
 		return (-1);
 	game->mlxwinptr = NULL;
 	i = get_textures(game, content);
-	printf("%p, %p, %p, %p\n", game->textures.no.img, game->textures.so.img,
-		game->textures.ea.img, game->textures.we.img);
 	if (!check_images(game))
 		return (-1);
 	printf("textures good\n");
