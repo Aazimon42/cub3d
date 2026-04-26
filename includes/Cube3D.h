@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:30:06 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/25 19:30:39 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/04/26 18:49:01 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ typedef struct s_game
 void	print_error(char *message);
 int		parse_file(t_game *game, char *name);
 void    free_all(t_game *game);
+int 	ParseRGBLine(char **content, t_game *game, int i);
+void    free2d(char **array);
 
 #endif

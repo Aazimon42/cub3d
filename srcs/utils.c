@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 18:36:11 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/04/25 20:23:49 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/04/26 18:48:26 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void    free2d(char **array)
 
 void    free_all(t_game *game)
 {
+    if (!game)
+        return ;
     if (game->map)
         free2d(game->map);
     if (game->textures.no.img)
@@ -44,6 +46,7 @@ void    free_all(t_game *game)
         mlx_destroy_image(game->mlxptr, game->textures.we.img);
     if (game->mlxwinptr)
         mlx_destroy_window(game->mlxptr, game->mlxwinptr);
+    mlx_destroy_display(game->mlxptr);
     if (game->mlxptr)
         free(game->mlxptr);
 }

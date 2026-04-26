@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:02:40 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/25 19:34:24 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/04/26 19:06:48 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,32 +38,37 @@ int	get_textures(t_game *game, char **content)
 	i = 0;
 	while (content[i] && content[i][0] == '\n')
 		i++;
-	if (content[i] && !ft_strncmp(content[i], "NO", 2))
-		game->textures.no.img = mlx_xpm_file_to_image(game->mlxptr, content[i++] + 3,
+	if (content[i] && ft_strlen(content[i]) > 2 && !ft_strncmp(content[i], "NO", 2))
+		game->textures.no.img = mlx_xpm_file_to_image(game->mlxptr, content[i] + 3,
 			&game->textures.no.width, &game->textures.no.height);
+	i++;
 	while (content[i] && content[i][0] == '\n')
 		i++;
-	if (content[i] && !ft_strncmp(content[i], "SO", 2))
-		game->textures.so.img = mlx_xpm_file_to_image(game->mlxptr, content[i++] + 3,
+	if (content[i] && ft_strlen(content[i]) > 2 && !ft_strncmp(content[i], "SO", 2))
+		game->textures.so.img = mlx_xpm_file_to_image(game->mlxptr, content[i] + 3,
 			&game->textures.so.width, &game->textures.so.height);
+	i++;
 	while (content[i] && content[i][0] == '\n')
 		i++;
-	if (content[i] && !ft_strncmp(content[i], "EA", 2))
-		game->textures.ea.img = mlx_xpm_file_to_image(game->mlxptr, content[i++] + 3,
+	if (content[i] && ft_strlen(content[i]) > 2 && !ft_strncmp(content[i], "EA", 2))
+		game->textures.ea.img = mlx_xpm_file_to_image(game->mlxptr, content[i] + 3,
 			&game->textures.ea.width, &game->textures.ea.height);
+	i++;
 	while (content[i] && content[i][0] == '\n')
 		i++;
-	if (content[i] && !ft_strncmp(content[i], "WE", 2))
-		game->textures.we.img = mlx_xpm_file_to_image(game->mlxptr, content[i++] + 3,
+	if (content[i] && ft_strlen(content[i]) > 2 && !ft_strncmp(content[i], "WE", 2))
+		game->textures.we.img = mlx_xpm_file_to_image(game->mlxptr, content[i] + 3,
 			&game->textures.we.width, &game->textures.we.height);
+	i++;
 	return (i);
 }
 
-char **get_content(char *name)
+char *get_content(char *name)
 {
 	int	fd;
 	char *line;
 	char *content;
+	char *tmp;
 
 	fd = open(name, O_RDONLY);
 	if (fd == -1)
@@ -72,29 +77,43 @@ char **get_content(char *name)
 	content = NULL;
 	while(line)
 	{
+		tmp = content;
 		content = ft_strjoin(content, line);
 		free(line);
+		free(tmp);
 		if (!content)
 			return (NULL);
 		line = get_next_line(fd);
 	}
-	return (ft_split(content, '\n'));
+	close(fd);
+	return (content);
 }
 
 int parse_file(t_game *game, char *name)
 {
+	char	*tmp;
 	char	**content;
+	int		i;
 
-	content = get_content(name);
-	printf("content good\n");
+	tmp = get_content(name);
+	content = ft_split(tmp, '\n');
+	free(tmp);
 	if (!content || !content[0])
 		return (-1);
+	printf("content good\n");
 	game->mlxptr = mlx_init();
 	if (!game->mlxptr)
 		return (-1);
-	get_textures(game, content);
-	printf("textures good\n");
+	game->mlxwinptr = NULL;
+	i = get_textures(game, content);
+	printf("%p, %p, %p, %p\n", game->textures.no.img, game->textures.so.img,
+		game->textures.ea.img, game->textures.we.img);
 	if (!check_images(game))
 		return (-1);
+	printf("textures good\n");
+	game->map = content;
+	ParseRGBLine(content, game, i);
+	printf("%d, %d, %d\n", game->fcolor->red, game->fcolor->green, game->fcolor->blue);
+	free2d(content);
 	return (0);
 }

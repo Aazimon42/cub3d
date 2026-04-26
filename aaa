@@ -1,4 +1,7 @@
-NO ./aaa
-SO ./aaa
-EA ./aaa
-WE ./aaa
+NO ./output.xpm
+SO ./output.xpm
+EA ./output.xpm
+WE ./output.xpm
+
+F 220,100,0
+C 225,30,0
