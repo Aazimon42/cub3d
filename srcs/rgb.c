@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:54:39 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/26 19:58:51 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/04/29 17:09:12 by ldesboui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ static int isint(char *text, char after)
 	int i = 0;
 	int has_digit = 0;
 
-	if (text[i] == ',')
-		i++;
 	while (text[i] && text[i] == ' ')
 		i++;
 	while (text[i] && text[i] >= '0' && text[i] <= '9')
@@ -68,9 +66,9 @@ int	ParseLine(char *line, t_game *game)
 		return (-1);
 	}
 	if (line[0] == 'F')
-		game->fcolor = &colors;
+		game->fcolor = colors;
 	else 
-		game->ccolor = &colors;
+		game->ccolor = colors;
 	return (1);
 }
 
