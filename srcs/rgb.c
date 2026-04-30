@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: malebrun <malebrun@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:54:39 by malebrun          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2026/04/30 15:43:09 by edi-maio         ###   ########.fr       */
-=======
-/*   Updated: 2026/04/29 17:09:12 by ldesboui         ###   ########.fr       */
->>>>>>> 0815c978d0127bdf448971e3326d43d29a3e3e9c
+/*   Updated: 2026/04/30 17:46:12 by malebrun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,27 +65,11 @@ int	ParseLine(char *line, t_game *game)
 		print_error("color value need to be in between 0 and 255");
 		return (0);
 	}
-	if (line[0] == 'F')
+	if (line[0] == 'F' && !game->fcolors)
 		game->fcolor = colors;
-	else 
+	else if (line[0] == 'C' && !game->ccolors)
 		game->ccolor = colors;
+	else
+		return (0);
 	return (1);
-}
-
-int ParseRGBLine(char **content, t_game *game, int i)
-{
-	while (content[i] && content[i][0] == '\n')
-		i++;
-	if (!content[i])
-		return (-1);
-	if (content[i][0] != 'F' || !ParseLine(content[i], game))
-		return (-1);
-	i++;
-	while (content[i] && content[i][0] == '\n')
-		i++;
-	if (!content[i])
-		return (-1);
-	if (content[i][0] != 'C' || !ParseLine(content[i], game))
-		return (-1);
-	return (i + 1);
 }
