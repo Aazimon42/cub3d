@@ -3,17 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:54:39 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/30 17:35:05 by edi-maio         ###   ########.fr       */
-=======
-/*   By: malebrun <malebrun@42angouleme.fr>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/25 17:54:39 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/30 17:46:12 by malebrun         ###   ########.fr       */
->>>>>>> bcd1d327396470b98d95b72fc0299fb88c26891e
+/*   Updated: 2026/04/30 19:10:48 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +65,9 @@ int	ParseLine(char *line, t_game *game)
 		print_error("color value need to be in between 0 and 255");
 		return (0);
 	}
-	if (line[0] == 'F' && !game->fcolors)
+	if (line[0] == 'F' && game->fcolor.red == -1)
 		game->fcolor = colors;
-	else if (line[0] == 'C' && !game->ccolors)
+	else if (line[0] == 'C' && game->ccolor.red == -1)
 		game->ccolor = colors;
 	else
 		return (0);
