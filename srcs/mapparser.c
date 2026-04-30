@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:02:40 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/30 15:39:36 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/04/30 17:52:41 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,21 @@ int	get_textures(t_game *game, char **content)
 			&game->textures.we.width, &game->textures.we.height);
 	i++;
 	return (i);
+}
+
+int	parse_lines(char **content, t_game *game)
+{
+	int	i;
+
+	while (content[i])
+	{
+		if (content[i][0] == '\n')
+			i++;
+		else if (ParseLine(content[i], game) || ParseTexture(game, content[i]))
+			i++;
+		else
+			return (-1);
+	}
 }
 
 char *get_content(char *name)
