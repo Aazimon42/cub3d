@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ldesboui <ldesboui@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:54:39 by malebrun          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/04/30 15:43:09 by edi-maio         ###   ########.fr       */
+=======
+/*   Updated: 2026/04/29 17:09:12 by ldesboui         ###   ########.fr       */
+>>>>>>> 0815c978d0127bdf448971e3326d43d29a3e3e9c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +70,9 @@ int	ParseLine(char *line, t_game *game)
 		return (0);
 	}
 	if (line[0] == 'F')
-		game->fcolor = &colors;
+		game->fcolor = colors;
 	else 
-		game->ccolor = &colors;
+		game->ccolor = colors;
 	return (1);
 }
 
