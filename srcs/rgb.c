@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:54:39 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/26 19:58:51 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/04/30 15:43:09 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ static int isint(char *text, char after)
 	int i = 0;
 	int has_digit = 0;
 
-	if (text[i] == ',')
-		i++;
 	while (text[i] && text[i] == ' ')
 		i++;
 	while (text[i] && text[i] >= '0' && text[i] <= '9')
@@ -65,7 +63,7 @@ int	ParseLine(char *line, t_game *game)
 		|| colors.green > 255 || colors.blue < 0 || colors.blue > 255)
 	{
 		print_error("color value need to be in between 0 and 255");
-		return (-1);
+		return (0);
 	}
 	if (line[0] == 'F')
 		game->fcolor = &colors;
@@ -80,14 +78,14 @@ int ParseRGBLine(char **content, t_game *game, int i)
 		i++;
 	if (!content[i])
 		return (-1);
-	if (!(content[i][0] == 'F' && (ParseLine(content[i], game))))
+	if (content[i][0] != 'F' || !ParseLine(content[i], game))
 		return (-1);
 	i++;
 	while (content[i] && content[i][0] == '\n')
 		i++;
 	if (!content[i])
 		return (-1);
-	if (!(content[i][0] == 'C' && (ParseLine(content[i], game))))
+	if (content[i][0] != 'C' || !ParseLine(content[i], game))
 		return (-1);
 	return (i + 1);
 }
