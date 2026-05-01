@@ -65,5 +65,7 @@ int		ParseLine(char *line, t_game *game);
 void    free2d(char **array);
 int 	get_map(t_game *game, char **content, int i);
 void    start(t_game *game);
+int		handle_input(int keycode, void *param);
+int    free_all_void(void *param);
 
 #endif

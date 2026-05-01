@@ -13,36 +13,15 @@
 #include "../includes/Cube3D.h"
 
 
-void    cast_rays(t_game *game)
-{
-    double  camera_x;
-    double  ray_dir_x;
-    double  ray_dir_y;
-    double  plane_x;
-    double  plane_y;
-    int     x;
 
-    plane_x = -game->dy * 0.66;
-    plane_y = game->dx * 0.66;
-    x = 0;
-    while (x < 1920)
-    {
-        camera_x = 2 * x / (double)1920 - 1;
-        ray_dir_x = game->dx + plane_x * camera_x;
-        ray_dir_y = game->dy + plane_y * camera_x;
-
-        dda(game, ray_dir_x, ray_dir_y, x);
-        x++;
-    }
-}
 
 void    start(t_game *game)
 {
     void    *img;
-    char    *imgptr;
-    int     bpp;
-    int     len;
-    int     endian;
+    //char    *imgptr;
+    //int     bpp;
+    //int     len;
+    //int     endian;
 
     game->mlxwinptr = mlx_new_window(game->mlxptr, 1920, 1080, "Cub3D");
     if (!game->mlxwinptr)
@@ -50,6 +29,8 @@ void    start(t_game *game)
     img = mlx_new_image(game->mlxptr, 1920, 1080);
     if (!img)
         return ;
-    imgptr = mlx_get_data_addr(img, &bpp, &len, &endian);
+    //imgptr = mlx_get_data_addr(img, &bpp, &len, &endian);
+    mlx_hook(game->mlxwinptr, 17, 0, free_all_void, game);
+    mlx_hook(game->mlxwinptr, 2, 1L << 0, handle_input, game);
     mlx_loop(game->mlxptr);
 }
