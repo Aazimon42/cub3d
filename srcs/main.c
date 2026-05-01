@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 18:33:25 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/02 00:27:49 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/02 00:47:37 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int main(int ac, char **av)
 {
     t_game game;
 
-    if (ac != 2)
+    if (ac != 2 || (ft_strlen(av[1]) < 4
+        || ft_strncmp(&av[1][ft_strlen(av[1]) - 4], ".cub", 4)))
     {
         print_error("Program takes one .cub file as argument\n");
         return (1);
