@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 21:19:10 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/01 23:31:00 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/01 23:41:16 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void    cast_rays(t_game *game)
     plane_x = -game->dy * 0.66;
     plane_y = game->dx * 0.66;
     x = 0;
-    while (x < 1920)
+    while (x < WIDTH)
     {
-        camera_x = 2 * x / (double)1920 - 1;
+        camera_x = 2 * x / (double)WIDTH - 1;
         ray_dir_x = game->dx + plane_x * camera_x;
         ray_dir_y = game->dy + plane_y * camera_x;
 
@@ -44,10 +44,10 @@ void    start(t_game *game)
     int     len;
     int     endian;
 
-    game->mlxwinptr = mlx_new_window(game->mlxptr, 1920, 1080, "Cub3D");
+    game->mlxwinptr = mlx_new_window(game->mlxptr, WIDTH, HEIGHT, "Cub3D");
     if (!game->mlxwinptr)
         return ;
-    img = mlx_new_image(game->mlxptr, 1920, 1080);
+    img = mlx_new_image(game->mlxptr, WIDTH, HEIGHT);
     if (!img)
         return ;
     imgptr = mlx_get_data_addr(img, &bpp, &len, &endian);

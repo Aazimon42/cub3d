@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:30:06 by malebrun          #+#    #+#             */
-/*   Updated: 2026/05/01 22:07:13 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/01 23:35:35 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <stdio.h>
 # include "../mlx_linux/mlx.h"
 # include "../libft/libft.h"
+
+# define WIDTH 1920
+# define HEIGHT 1080
 
 typedef struct s_rgb
 {
