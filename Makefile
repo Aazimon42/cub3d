@@ -20,7 +20,8 @@ SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)rgb.c \
 	   $(SRC_DIR)utils.c \
 	   $(SRC_DIR)map.c \
-	   $(SRC_DIR)display.c
+	   $(SRC_DIR)display.c \
+	   $(SRC_DIR)inputhandler.c
 
 MLX = mlx_linux/libmlx.a
 MLX_FLAGS = -lX11 -lXext

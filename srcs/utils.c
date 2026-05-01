@@ -36,17 +36,33 @@ void    free_all(t_game *game)
         return ;
     if (game->map)
         free2d(game->map);
-    if (game->textures.no.img)
-        mlx_destroy_image(game->mlxptr, game->textures.no.img);
-    if (game->textures.so.img)
-        mlx_destroy_image(game->mlxptr, game->textures.so.img);
-    if (game->textures.ea.img)
-        mlx_destroy_image(game->mlxptr, game->textures.ea.img);
-    if (game->textures.we.img)
-        mlx_destroy_image(game->mlxptr, game->textures.we.img);
-    if (game->mlxwinptr)
-        mlx_destroy_window(game->mlxptr, game->mlxwinptr);
-    mlx_destroy_display(game->mlxptr);
     if (game->mlxptr)
+    {
+        if (game->textures.no.img)
+            mlx_destroy_image(game->mlxptr, game->textures.no.img);
+        if (game->textures.so.img)
+            mlx_destroy_image(game->mlxptr, game->textures.so.img);
+        if (game->textures.ea.img)
+            mlx_destroy_image(game->mlxptr, game->textures.ea.img);
+        if (game->textures.we.img)
+            mlx_destroy_image(game->mlxptr, game->textures.we.img);
+        if (game->mlxwinptr)
+            mlx_destroy_window(game->mlxptr, game->mlxwinptr);
+        mlx_destroy_display(game->mlxptr);
         free(game->mlxptr);
+<<<<<<< HEAD
 }
+=======
+    }
+    exit(0);
+}
+
+int    free_all_void(void *param)
+{
+    t_game *game;
+
+    game = (t_game *) param;
+    free_all(game);
+    return (0);
+}
+>>>>>>> 759e8111e8f272d9b056183d62dd9dc09ff60181
