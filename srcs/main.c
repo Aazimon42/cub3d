@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 18:33:25 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/04/26 16:22:18 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/01 22:07:26 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int main(int ac, char **av)
         free_all(&game);
         return (1);
     }
+    start(&game);
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:02:40 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/30 19:15:48 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/01 21:57:33 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	parse_lines(char **content, t_game *game)
 			break;
 		i++;
 	}
-	return (i);
+	return (i + 1);
 }
 
 char *get_content(char *name)
@@ -127,7 +127,6 @@ int parse_file(t_game *game, char *name)
 	game->mlxptr = mlx_init();
 	if (!game->mlxptr)
 		return (-1);
-	game->mlxwinptr = NULL;
 	i = parse_lines(content, game);
 	if (i == -1 || !check_images(game))
 		return (-1);

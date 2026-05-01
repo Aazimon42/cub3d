@@ -1,11 +1,13 @@
 
-SO ./output.xpm
-EA ./output.xpm
+SO ./textures/output.xpm
+EA ./textures/output.xpm
 C 225,0,255
 
-NO ./output.xpm
+NO ./textures/output.xpm
 F 220,100,0
-WE ./output.xpm
+WE ./textures/output.xpm
+
+
 
 
 
@@ -24,4 +26,3 @@ WE ./output.xpm
 11000001110101011111011110N0011
 11110111 1110101 101111010001
 11111111 1111111 111111111111
-

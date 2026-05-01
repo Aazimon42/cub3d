@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 19:39:03 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/04/26 20:05:08 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/01 21:18:55 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,12 @@ int get_map(t_game *game, char **content, int i)
         i++;
     if (!content[i])
         return (-1);
-    if (!check_map(&content[i]))
+    game->map = &content[i];
+    if (!check_map(game->map))
         return (-1);
-    if (!check_closed_map(&content[i]))
+    if (!check_closed_map(game->map))
         return (-1);
     if (!check_player(game))
         return (-1);
-    game->map = &content[i];
     return (0);
 }
