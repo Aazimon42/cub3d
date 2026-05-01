@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:30:06 by malebrun          #+#    #+#             */
-/*   Updated: 2026/05/01 23:35:35 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/02 00:41:05 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ typedef struct s_game
 
 void	print_error(char *message);
 int		parse_file(t_game *game, char *name);
-void    free_all(t_game *game);
+int		free_all(t_game *game);
 int		ParseLine(char *line, t_game *game);
 void    free2d(char **array);
 int 	get_map(t_game *game, char **content, int i);
 void    start(t_game *game);
 int		handle_input(int keycode, void *param);
-int    free_all_void(void *param);
+char    **ft_strdup2(char **array);
 
 #endif
