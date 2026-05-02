@@ -6,12 +6,16 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:54:39 by malebrun          #+#    #+#             */
-/*   Updated: 2026/04/30 19:10:48 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/02 06:08:37 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cube3D.h"
 
+int	create_trgb(t_rgb *rgb)
+{
+	return (0 << 24 | rgb->red << 16 | rgb->green << 8 | rgb->blue);
+}
 
 static void skipto(char *line, int *i, char toskip)
 {

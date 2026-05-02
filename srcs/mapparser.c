@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:02:40 by malebrun          #+#    #+#             */
-/*   Updated: 2026/05/02 00:42:07 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/02 06:32:09 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ int parse_file(t_game *game, char *name)
 	i = parse_lines(content, game);
 	if (i == -1 || !check_images(game))
 		return (-1);
-	game->map = content;
 	if (get_map(game, content, i) == -1)
 		return (-1);
 	free2d(content);

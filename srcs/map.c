@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 19:39:03 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/02 00:41:22 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/02 06:46:16 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,9 @@ int get_map(t_game *game, char **content, int i)
         return (-1);
     if (!check_player(game))
         return (-1);
+    game->dx = 0;
+    game->dy = -1;
+    game->plane_x = 0.66;
+    game->plane_y = 0;
     return (0);
 }

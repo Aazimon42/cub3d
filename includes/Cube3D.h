@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:30:06 by malebrun          #+#    #+#             */
-/*   Updated: 2026/05/02 00:41:05 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/02 07:32:09 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <math.h>
 # include "../mlx_linux/mlx.h"
 # include "../libft/libft.h"
 
@@ -31,6 +32,30 @@
 # define LSHIFT 65505
 # define MOVESPEED 0.1
 # define BUFFRUN 2
+# define MOUSE_SENS 0.0001
+
+typedef struct s_ray
+{
+	int		tex_x;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+}	t_ray;
+
+typedef struct s_dda
+{
+    int     map_x;
+    int     map_y;
+    double  side_dist_x;
+    double  side_dist_y;
+    double  delta_dist_x;
+    double  delta_dist_y;
+    double  perp_dist;
+    int     step_x;
+    int     step_y;
+    int     side;
+    int     hit;
+}   t_dda;
 
 typedef struct s_rgb
 {
@@ -42,8 +67,12 @@ typedef struct s_rgb
 typedef struct s_img
 {
 	void	*img;
+	char	*addr;
 	int		width;
 	int		height;
+	int		endian;
+	int		len;
+	int		bpp;
 }	t_img;
 
 typedef struct s_texture
@@ -59,11 +88,13 @@ typedef struct s_game
 	char		**map;
 	float		x;
 	float		y;
-	int			fov;
+	double		plane_x;
+	double		plane_y;
 	float		dx;
 	float		dy;
 	void		*mlxptr;
 	void		*mlxwinptr;
+	t_img		img;
 	char		startdirection;
 	int			is_running;
 	t_rgb		fcolor;
@@ -80,5 +111,12 @@ int 	get_map(t_game *game, char **content, int i);
 void    start(t_game *game);
 int		handle_input(int keycode, void *param);
 char    **ft_strdup2(char **array);
+void    raycast(t_game *game);
+void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
+int		get_pixel(t_game *game, t_ray *ray, t_dda *dda, int tex_y);
+void	prep_dda(t_game *game, t_ray *ray, t_dda *dda);
+void	exec_dda(t_game *game, t_dda *dda);
+int		create_trgb(t_rgb *rgb);
+int		handle_mouse(int x, int y, t_game *game);
 
 #endif
