@@ -23,6 +23,15 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
+# define FORWARD 119
+# define LEFT 97
+# define RIGHT 100
+# define DOWN 115
+# define ESCP 65307
+# define LSHIFT 65505
+# define MOVESPEED 0.1
+# define BUFFRUN 2
+
 typedef struct s_rgb
 {
 	int	red;
@@ -56,6 +65,7 @@ typedef struct s_game
 	void		*mlxptr;
 	void		*mlxwinptr;
 	char		startdirection;
+	int			is_running;
 	t_rgb		fcolor;
 	t_rgb		ccolor;
 	t_texture	textures;

@@ -12,11 +12,38 @@
 
 #include "../includes/Cube3D.h"
 
-#define FORWARD 119
-#define LEFT 97
-#define RIGHT 100
-#define DOWN 115
-#define ESCP 65307
+static int moveable(float x, float y, t_game *game)
+{
+    if (game->map[(int)y] && game->map[(int)y][(int)x] && game->map[(int)y][(int)x] != '1')
+        return (1);
+    return (0);
+}
+
+static void move(int angle, t_game *game)
+{
+    double theta;
+    float   x;
+    float   y;
+    float   ms;
+
+    theta = (game->dx + angle) * M_PI / 180.0;
+    ms = MOVESPEED + (BUFFRUN * game->isrunning);
+    x = game->x + cos(theta) * ms;
+    y = game->y + sin(theta) * ms;
+    if (moveable(x, y, game))
+    {
+        game->y = y;
+        game->x = x;
+    }
+}
+
+static void boolrun(t_game *game)
+{
+    if (game->isrunning)
+        game->isrunning = 0;
+    else
+        game->isrunning = 1;
+}
 
 int handle_input(int keycode, void *param)
 {
@@ -26,12 +53,14 @@ int handle_input(int keycode, void *param)
     if (keycode == ESCP)
         free_all(game);
     if (keycode == FORWARD)
-        printf("devant");    
+        move(0, game);   
     if (keycode == DOWN)
-        printf("derriere");
+        move(180, game);
     if (keycode == LEFT)
-        printf("gauche");    
+        move(270, game);  
     if (keycode == RIGHT)
-        printf("droite");
+        move(90, game);
+    if (keycode == LSHIFT)
+        boolrun(game);
     return (1 * 1 *1 *1 *1 *1 *1);
-} 
+}
