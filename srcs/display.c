@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 21:19:10 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/02 07:29:47 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/02 09:21:21 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	get_pixel(t_game *game, t_ray *ray, t_dda *dda, int tex_y)
 	t_img	*tex;
 
 	if (dda->side == 0 && ray->ray_dir_x > 0)
-		tex = &game->textureset[game->current].ea;
+		tex = &game->textures.ea;
 	else if (dda->side == 0 && ray->ray_dir_x < 0)
-		tex = &game->textureset[game->current].we;
+		tex = &game->textures.we;
 	else if (dda->side == 1 && ray->ray_dir_y > 0)
-		tex = &game->textureset[game->current]->so;
+		tex = &game->textures.so;
 	else
-		tex = &game->textureset[game->current]->no;
+		tex = &game->textures.no;
     dst = tex->addr + (tex_y * tex->len + ray->tex_x * (tex->bpp / 8));
 	color = *(unsigned int *)dst;
 	return (color);

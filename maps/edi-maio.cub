@@ -1,11 +1,11 @@
 
-SO ./textures/so/ldesboui.xpm
-EA ./textures/ea/ldesboui.xpm
+SO ./textures/so/edi-maio.xpm
+EA ./textures/ea/edi-maio.xpm
 C 225,0,255
 
-NO ./textures/no/ldesboui.xpm
+NO ./textures/no/edi-maio.xpm
 F 220,100,0
-WE ./textures/we/ldesboui.xpm
+WE ./textures/we/edi-maio.xpm
 
 
 
@@ -19,7 +19,7 @@ WE ./textures/we/ldesboui.xpm
 111111111011000001110000000000001
 100000000011000001110111111111111
 11110111111111011100000010001
-11110111111111011101010010001
+11110111111111011101010000001
 11000000110101011100000010001
 10000000000000001100000010001
 10000000000000001101010010001

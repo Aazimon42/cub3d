@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 23:41:21 by malebrun          #+#    #+#             */
-/*   Updated: 2026/05/02 07:36:04 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/02 09:21:34 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,5 @@ int handle_input(int keycode, void *param)
         move(RIGHT, game);
     if (keycode == LSHIFT)
         boolrun(game);
-    if (keycode == RANDOMIZE)
-        set_random_texture(game);
     return (0);
 }
