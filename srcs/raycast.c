@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edi-maio <edi-maio@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:52 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/02 09:41:43 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/02 09:52:37 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,19 @@ void	render_vertical_line(t_game *game, t_ray *ray, t_dda *dda, int x, int limit
 	double	step;
 	double	tex_pos;
 	int		line_h;
+	int		fcolor;
+	int		ccolor;
 
-	step = 1.0 * 64 / line_h;
+	ccolor = create_trgb(&game->ccolor);
+	fcolor = create_trgb(&game->fcolor);
 	line_h = (int)(HEIGHT / dda->perp_dist);
+	step = 1.0 * 64 / line_h;
 	tex_pos = (limits[0] - HEIGHT / 2 + line_h / 2) * step;
 	y = -1;
 	while (++y < HEIGHT)
 	{
 		if (y < limits[0])
-			my_mlx_pixel_put(game, x, y, create_trgb(&game->ccolor));
+			my_mlx_pixel_put(game, x, y, ccolor);
 		else if (y >= limits[0] && y <= limits[1])
 		{
 			color = get_pixel(game, ray, dda, (int)tex_pos & 63);
@@ -42,7 +46,7 @@ void	render_vertical_line(t_game *game, t_ray *ray, t_dda *dda, int x, int limit
 			tex_pos += step;
 		}
 		else
-			my_mlx_pixel_put(game, x, y, create_trgb(&game->fcolor));
+			my_mlx_pixel_put(game, x, y, fcolor);
 	}
 }
 
