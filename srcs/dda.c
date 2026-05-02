@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edi-maio <edi-maio@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/02 05:53:51 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/02 06:14:01 by edi-maio         ###   ########.fr       */
+/*   Created: 2026/05/02 09:35:58 by edi-maio          #+#    #+#             */
+/*   Updated: 2026/05/02 09:36:05 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	exec_dda(t_game *game, t_dda *dda)
 		}
 		if (game->map[dda->map_y][dda->map_x] == '1')
 			dda->hit = 1;
-        if (dda->map_y < 0 || dda->map_x < 0 || !game->map[dda->map_y] 
+		if (dda->map_y < 0 || dda->map_x < 0 || !game->map[dda->map_y]
 			|| dda->map_x >= (int)ft_strlen(game->map[dda->map_y]))
 		{
 			dda->hit = 1;

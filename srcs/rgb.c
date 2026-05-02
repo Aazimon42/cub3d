@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edi-maio <edi-maio@42angouleme.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/25 17:54:39 by malebrun          #+#    #+#             */
-/*   Updated: 2026/05/02 06:08:37 by edi-maio         ###   ########.fr       */
+/*   Created: 2026/05/02 09:36:58 by edi-maio          #+#    #+#             */
+/*   Updated: 2026/05/02 09:44:18 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	create_trgb(t_rgb *rgb)
 	return (0 << 24 | rgb->red << 16 | rgb->green << 8 | rgb->blue);
 }
 
-static void skipto(char *line, int *i, char toskip)
+static void	skipto(char *line, int *i, char toskip)
 {
 	while (line[*i] && line[*i] != toskip)
 		(*i)++;
@@ -25,11 +25,13 @@ static void skipto(char *line, int *i, char toskip)
 		(*i)++;
 }
 
-static int isint(char *text, char after)
+static int	isint(char *text, char after)
 {
-	int i = 0;
-	int has_digit = 0;
+	int	i;
+	int	has_digit;
 
+	i = 0;
+	has_digit = 0;
 	while (text[i] && text[i] == ' ')
 		i++;
 	while (text[i] && text[i] >= '0' && text[i] <= '9')
@@ -44,24 +46,24 @@ static int isint(char *text, char after)
 	return (0);
 }
 
-int	ParseLine(char *line, t_game *game)
+int	parse_line(char *line, t_game *game)
 {
-	t_rgb colors;
-	int i;
+	t_rgb	colors;
+	int		i;
 
 	i = 1;
 	if (line[i] != ' ')
-		return(0);
+		return (0);
 	if (!line[i] || !isint(&line[i], ','))
-		return(0);
+		return (0);
 	colors.red = ft_atoi(&line[i]);
 	skipto(line, &i, ',');
 	if (!line[i] || !isint(&line[i], ','))
-		return(0);
+		return (0);
 	colors.green = ft_atoi(&line[i]);
 	skipto(line, &i, ',');
 	if (!line[i] || !isint(&line[i], '\0'))
-		return(0);
+		return (0);
 	colors.blue = ft_atoi(&line[i]);
 	if (colors.red < 0 || colors.red > 255 || colors.green < 0
 		|| colors.green > 255 || colors.blue < 0 || colors.blue > 255)
