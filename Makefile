@@ -24,7 +24,9 @@ SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)inputhandler.c \
 	   $(SRC_DIR)raycast.c \
 	   $(SRC_DIR)dda.c \
-	   $(SRC_DIR)mouse.c
+	   $(SRC_DIR)mouse.c \
+	   $(SRC_DIR)surprise.c
+
 
 MLX = mlx_linux/libmlx.a
 MLX_FLAGS = -lX11 -lXext

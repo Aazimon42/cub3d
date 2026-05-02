@@ -26,11 +26,7 @@ void	render_vertical_line(t_game *game, t_ray *ray, t_dda *dda, int x, int limit
 	double	step;
 	double	tex_pos;
 	int		line_h;
-	int		fcolor;
-	int		ccolor;
 
-	ccolor = create_trgb(&game->ccolor);
-	fcolor = create_trgb(&game->fcolor);
 	line_h = (int)(HEIGHT / dda->perp_dist);
 	step = 1.0 * 64 / line_h;
 	tex_pos = (limits[0] - HEIGHT / 2 + line_h / 2) * step;
@@ -38,7 +34,7 @@ void	render_vertical_line(t_game *game, t_ray *ray, t_dda *dda, int x, int limit
 	while (++y < HEIGHT)
 	{
 		if (y < limits[0])
-			my_mlx_pixel_put(game, x, y, ccolor);
+			my_mlx_pixel_put(game, x, y, game->pccolor);
 		else if (y >= limits[0] && y <= limits[1])
 		{
 			color = get_pixel(game, ray, dda, (int)tex_pos & 63);
@@ -46,7 +42,7 @@ void	render_vertical_line(t_game *game, t_ray *ray, t_dda *dda, int x, int limit
 			tex_pos += step;
 		}
 		else
-			my_mlx_pixel_put(game, x, y, fcolor);
+			my_mlx_pixel_put(game, x, y, game->pfcolor);
 	}
 }
 

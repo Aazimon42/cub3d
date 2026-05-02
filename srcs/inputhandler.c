@@ -62,6 +62,8 @@ static void	move(int key, t_game *game)
 	if (moveable(x, y, game)) {
 		game->x = x;
 		game->y = y;
+		game->pfcolor = create_trgb(&game->fcolor, game);
+		game->pccolor = create_trgb(&game->ccolor, game);
 		raycast(game);
 	}
 }
@@ -72,6 +74,14 @@ static void	boolrun(t_game *game)
 		game->is_running = 0;
 	else
 		game->is_running = 1;
+}
+
+static void	boolrgb(t_game *game)
+{
+	if (game->rgbmode)
+		game->rgbmode = 0;
+	else
+		game->rgbmode = 1;
 }
 
 int	handle_input(int keycode, void *param)
@@ -91,5 +101,7 @@ int	handle_input(int keycode, void *param)
 		move(RIGHT, game);
 	if (keycode == LSHIFT)
 		boolrun(game);
+	if (keycode == RGBMODE)
+		boolrgb(game);
 	return (0);
 }

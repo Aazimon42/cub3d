@@ -12,8 +12,14 @@
 
 #include "../includes/Cube3D.h"
 
-int	create_trgb(t_rgb *rgb)
+int	create_trgb(t_rgb *rgb , t_game *game)
 {
+	if (game->rgbmode)
+	{
+		rgb->red = rrint();
+		rgb->green = rrint();
+		rgb->blue = rrint();
+	}
 	return (0 << 24 | rgb->red << 16 | rgb->green << 8 | rgb->blue);
 }
 

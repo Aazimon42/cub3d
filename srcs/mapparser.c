@@ -71,6 +71,7 @@ int	parse_lines(char **content, t_game *game)
 	game->fcolor.red = -1;
 	game->fcolor.blue = -1;
 	game->fcolor.green = -1;
+	game->rgbmode = 0;
 	i = 0;
 	while (content[i])
 	{

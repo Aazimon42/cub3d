@@ -12,16 +12,15 @@
 
 #include "../includes/Cube3D.h"
 
-void	set_random_texture(t_game *game)
+int rrint(void)
 {
-	struct timeval  tv;
-	int			 i;
+    struct timeval tv;
+    static unsigned int seed;
 
-	i = 0;
-	while(game->texturesets[i])
-		i++;
-	if (i == 0)
-		return ;
-	gettimeofday(&tv, NULL);
-	game->current = tv.tv_usec % i;
+    gettimeofday(&tv, NULL);
+
+    seed ^= tv.tv_usec;
+    seed = seed * 1103515245 + 12345;
+
+    return (seed % 255);
 }

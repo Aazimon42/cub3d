@@ -59,6 +59,8 @@ void	start(t_game *game)
 	mlx_hook(game->mlxwinptr, 2, 1L << 0, handle_input, game);
 	mlx_mouse_hide(game->mlxptr, game->mlxwinptr);
 	mlx_hook(game->mlxwinptr, 6, 1L << 6, handle_mouse, game);
+	game->pfcolor = create_trgb(&game->fcolor, game);
+	game->pccolor = create_trgb(&game->ccolor, game);
 	raycast(game);
 	mlx_loop(game->mlxptr);
 }
