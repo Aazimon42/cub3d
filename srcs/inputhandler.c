@@ -91,5 +91,7 @@ int handle_input(int keycode, void *param)
         move(RIGHT, game);
     if (keycode == LSHIFT)
         boolrun(game);
+    if (keycode == RANDOMIZE)
+        set_random_texture(game);
     return (0);
 }
