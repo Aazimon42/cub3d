@@ -19,13 +19,13 @@ int	get_pixel(t_game *game, t_ray *ray, t_dda *dda, int tex_y)
 	t_img	*tex;
 
 	if (dda->side == 0 && ray->ray_dir_x > 0)
-		tex = &game->textures.ea;
+		tex = &game->textureset[game->current].ea;
 	else if (dda->side == 0 && ray->ray_dir_x < 0)
-		tex = &game->textures.we;
+		tex = &game->textureset[game->current].we;
 	else if (dda->side == 1 && ray->ray_dir_y > 0)
-		tex = &game->textures.so;
+		tex = &game->textureset[game->current]->so;
 	else
-		tex = &game->textures.no;
+		tex = &game->textureset[game->current]->no;
     dst = tex->addr + (tex_y * tex->len + ray->tex_x * (tex->bpp / 8));
 	color = *(unsigned int *)dst;
 	return (color);
