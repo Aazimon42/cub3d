@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapparser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edi-maio <edi-maio@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:37 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/02 09:43:59 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 01:31:31 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,20 @@ int	check_images(t_game *game)
 
 int	get_textures(t_game *game, char *line)
 {
-	if (line && ft_strlen(line) > 2 && !ft_strncmp(line, "NO", 2) && !game->textures.no.img)
+	if (line && ft_strlen(line) > 2 && !ft_strncmp(line, "NO", 2)
+			&& !game->textures.no.img)
 		game->textures.no.img = mlx_xpm_file_to_image(game->mlxptr, line + 3,
 				&game->textures.no.width, &game->textures.no.height);
-	else if (line && ft_strlen(line) > 2 && !ft_strncmp(line, "SO", 2) && !game->textures.so.img)
+	else if (line && ft_strlen(line) > 2 && !ft_strncmp(line, "SO", 2)
+			&& !game->textures.so.img)
 		game->textures.so.img = mlx_xpm_file_to_image(game->mlxptr, line + 3,
 				&game->textures.so.width, &game->textures.so.height);
-	else if (line && ft_strlen(line) > 2 && !ft_strncmp(line, "EA", 2) && !game->textures.ea.img)
+	else if (line && ft_strlen(line) > 2 && !ft_strncmp(line, "EA", 2)
+			&& !game->textures.ea.img)
 		game->textures.ea.img = mlx_xpm_file_to_image(game->mlxptr, line + 3,
 				&game->textures.ea.width, &game->textures.ea.height);
-	else if (line && ft_strlen(line) > 2 && !ft_strncmp(line, "WE", 2) && !game->textures.we.img)
+	else if (line && ft_strlen(line) > 2 && !ft_strncmp(line, "WE", 2)
+			&& !game->textures.we.img)
 		game->textures.we.img = mlx_xpm_file_to_image(game->mlxptr, line + 3,
 				&game->textures.we.width, &game->textures.we.height);
 	else

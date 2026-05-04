@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:30:06 by malebrun          #+#    #+#             */
-/*   Updated: 2026/05/02 09:43:47 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 00:37:28 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include "../mlx_linux/mlx.h"
 # include "../libft/libft.h"
 # include <sys/time.h>
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1280
+# define HEIGHT 720
 
 # define FORWARD 119
 # define LEFT 97
@@ -33,7 +33,7 @@
 # define RGBMODE 101
 # define MOVESPEED 0.1
 # define BUFFRUN 2
-# define MOUSE_SENS 0.0001
+# define MOUSE_SENS 0.0005
 
 typedef struct s_ray
 {
@@ -45,18 +45,18 @@ typedef struct s_ray
 
 typedef struct s_dda
 {
-    int     map_x;
-    int     map_y;
-    double  side_dist_x;
-    double  side_dist_y;
-    double  delta_dist_x;
-    double  delta_dist_y;
-    double  perp_dist;
-    int     step_x;
-    int     step_y;
-    int     side;
-    int     hit;
-}   t_dda;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_dist;
+	int		step_x;
+	int		step_y;
+	int		side;
+	int		hit;
+}	t_dda;
 
 typedef struct s_rgb
 {
@@ -110,12 +110,12 @@ void	print_error(char *message);
 int		parse_file(t_game *game, char *name);
 int		free_all(t_game *game);
 int		parse_line(char *line, t_game *game);
-void    free2d(char **array);
-int 	get_map(t_game *game, char **content, int i);
-void    start(t_game *game);
+void	free2d(char **array);
+int		get_map(t_game *game, char **content, int i);
+void	start(t_game *game);
 int		handle_input(int keycode, void *param);
-char    **ft_strdup2(char **array);
-void    raycast(t_game *game);
+char	**ft_strdup2(char **array);
+void	raycast(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 int		get_pixel(t_game *game, t_ray *ray, t_dda *dda, int tex_y);
 void	prep_dda(t_game *game, t_ray *ray, t_dda *dda);

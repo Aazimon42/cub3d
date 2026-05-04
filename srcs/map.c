@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edi-maio <edi-maio@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:29 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/02 09:36:34 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 01:30:56 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,31 @@ int	check_player(t_game *game)
 	return (1);
 }
 
+void	set_direction(t_game *game)
+{
+	if (game->startdirection == 'S')
+	{
+		game->dx = 0;
+		game->dy = 1;
+		game->plane_x = -0.66;
+		game->plane_y = 0;
+	}
+	else if (game->startdirection == 'E')
+	{
+		game->dx = 1;
+		game->dy = 0;
+		game->plane_x = 0;
+		game->plane_y = 0.66;
+	}
+	else if (game->startdirection == 'W')
+	{
+		game->dx = -1;
+		game->dy = 0;
+		game->plane_x = 0;
+		game->plane_y = -0.66;
+	}
+}
+
 int	get_map(t_game *game, char **content, int i)
 {
 	while (content[i] && content[i][0] == '\n')
@@ -112,9 +137,14 @@ int	get_map(t_game *game, char **content, int i)
 		return (-1);
 	if (!check_player(game))
 		return (-1);
-	game->dx = 0;
-	game->dy = -1;
-	game->plane_x = 0.66;
-	game->plane_y = 0;
+	if (game->startdirection == 'N')
+	{
+		game->dx = 0;
+		game->dy = -1;
+		game->plane_x = 0.66;
+		game->plane_y = 0;
+	}
+	else
+		set_direction(game);
 	return (0);
 }
