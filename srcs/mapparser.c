@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:37 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 06:27:43 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 06:37:29 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,19 @@ int	check_images(t_game *game)
 int	get_textures(t_game *game, char *line)
 {
 	if (line && ft_strlen(line) > 2 && !ft_strncmp(line, "NO", 2)
-			&& !game->textures.no.img)
+		&& !game->textures.no.img)
 		game->textures.no.img = mlx_xpm_file_to_image(game->mlxptr, line + 3,
 				&game->textures.no.width, &game->textures.no.height);
 	else if (line && ft_strlen(line) > 2 && !ft_strncmp(line, "SO", 2)
-			&& !game->textures.so.img)
+		&& !game->textures.so.img)
 		game->textures.so.img = mlx_xpm_file_to_image(game->mlxptr, line + 3,
 				&game->textures.so.width, &game->textures.so.height);
 	else if (line && ft_strlen(line) > 2 && !ft_strncmp(line, "EA", 2)
-			&& !game->textures.ea.img)
+		&& !game->textures.ea.img)
 		game->textures.ea.img = mlx_xpm_file_to_image(game->mlxptr, line + 3,
 				&game->textures.ea.width, &game->textures.ea.height);
 	else if (line && ft_strlen(line) > 2 && !ft_strncmp(line, "WE", 2)
-			&& !game->textures.we.img)
+		&& !game->textures.we.img)
 		game->textures.we.img = mlx_xpm_file_to_image(game->mlxptr, line + 3,
 				&game->textures.we.width, &game->textures.we.height);
 	else
@@ -133,8 +133,8 @@ int	parse_file(t_game *game, char *name)
 	if (!game->mlxptr)
 		return (-1);
 	game->textures.door.img = mlx_xpm_file_to_image(game->mlxptr,
-		"textures/door.xpm", &game->textures.door.width,
-		&game->textures.door.height);
+			"textures/door.xpm", &game->textures.door.width,
+			&game->textures.door.height);
 	i = parse_lines(content, game);
 	if (i == -1 || !check_images(game))
 		return (-1);

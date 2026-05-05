@@ -6,13 +6,13 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:58 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 06:00:03 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 06:40:41 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cube3D.h"
 
-int	create_trgb(t_rgb *rgb , t_game *game)
+int	create_trgb(t_rgb *rgb, t_game *game)
 {
 	if (game->rgbmode)
 	{
@@ -86,20 +86,20 @@ int	parse_line(char *line, t_game *game)
 	return (1);
 }
 
-void    gradient(t_game *game)
+void	gradient(t_game *game)
 {
-    int      target;
-    float    t;
-    int      steps;
-    int      i;
+	int		target;
+	float	t;
+	int		steps;
+	int		i;
 
 	game->active = 1;
-    target = rrint() << 16 | rrint() << 8 | rrint();
-    steps = 20;
-    i = 0;
-    while (i <= steps)
-    {
-        t = (float)i / steps;
+	target = rrint() << 16 | rrint() << 8 | rrint();
+	steps = 20;
+	i = 0;
+	while (i <= steps)
+	{
+		t = (float)i / steps;
 		game->ccolor.red = (int)(((game->ccolor.red) * (1 - t)
 					+ (target >> 16 & 0xFF) * t));
 		game->ccolor.green = (int)(((game->ccolor.green) * (1 - t)
@@ -108,9 +108,9 @@ void    gradient(t_game *game)
 					+ (target & 0xFF) * t));
 		game->pccolor = create_trgb(&game->ccolor, game);
 		game->pfcolor = game->pccolor;
-        raycast(game);
-        mlx_do_sync(game->mlxptr);
-        i++;
-    }
+		raycast(game);
+		mlx_do_sync(game->mlxptr);
+		i++;
+	}
 	game->active = 0;
 }

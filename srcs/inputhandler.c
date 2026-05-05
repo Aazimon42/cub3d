@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:14 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 06:33:29 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 06:47:53 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,52 +34,45 @@ static int	moveable(float x, float y, t_game *game)
 	return (0);
 }
 
+static void	set_position(t_game *game, int key, float *x, float *y)
+{
+	float	ms;
+
+	ms = MOVESPEED + (BUFFRUN * game->is_running);
+	if (key == FORWARD)
+	{
+		*x = game->x + game->dx * ms;
+		*y = game->y + game->dy * ms;
+	}
+	else if (key == DOWN)
+	{
+		*x = game->x - game->dx * ms;
+		*y = game->y - game->dy * ms;
+	}
+	else if (key == RIGHT)
+	{
+		*x = game->x - game->dy * ms;
+		*y = game->y + game->dx * ms;
+	}
+	else if (key == LEFT)
+	{
+		*x = game->x + game->dy * ms;
+		*y = game->y - game->dx * ms;
+	}
+}
+
 static void	move(int key, t_game *game)
 {
 	float	x;
 	float	y;
-	float	ms;
 
-	ms = MOVESPEED + (BUFFRUN * game->is_running);
-	x = 0;
-	y = 0;
-	if (key == FORWARD) {
-		x = game->x + game->dx * ms;
-		y = game->y + game->dy * ms;
-	}
-	else if (key == DOWN) {
-		x = game->x - game->dx * ms;
-		y = game->y - game->dy * ms;
-	}
-	else if (key == RIGHT) {
-		x = game->x - game->dy * ms;
-		y = game->y + game->dx * ms;
-	}
-	else if (key == LEFT) {
-		x = game->x + game->dy * ms;
-		y = game->y - game->dx * ms;
-	}
-	if (moveable(x, y, game)) {
+	set_position(game, key, &x, &y);
+	if (moveable(x, y, game))
+	{
 		game->x = x;
 		game->y = y;
 		open_doors(game);
 	}
-}
-
-static void	boolrun(t_game *game)
-{
-	if (game->is_running)
-		game->is_running = 0;
-	else
-		game->is_running = 1;
-}
-
-static void	boolrgb(t_game *game)
-{
-	if (game->rgbmode)
-		game->rgbmode = 0;
-	else
-		game->rgbmode = 1;
 }
 
 int	handle_input(int keycode, void *param)
@@ -92,7 +85,7 @@ int	handle_input(int keycode, void *param)
 		if (keycode == ESCP)
 			free_all(game);
 		if (keycode == FORWARD || keycode == DOWN
-				|| keycode == LEFT || keycode == RIGHT)
+			|| keycode == LEFT || keycode == RIGHT)
 			move(keycode, game);
 		if (keycode == RCAM)
 			rotate_player(game, MOUSE_SENS * 100);

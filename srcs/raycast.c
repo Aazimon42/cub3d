@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:52 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 06:35:34 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 06:54:50 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,19 @@ void	init_ray(t_ray *ray, t_game *game, int x)
 	ray->ray_dir_y = game->dy + game->plane_y * ray->camera_x;
 }
 
-void	render_vertical_line(t_game *game, t_ray *ray, t_dda *dda, int x, int limits[2])
+void	render_vertical_line(t_game *game, t_ray *ray, t_dda *dda, int x)
 {
 	int		y;
 	int		color;
-	double	step;
 	double	tex_pos;
 	int		line_h;
+	int		limits[2];
 
 	line_h = (int)(HEIGHT / dda->perp_dist);
-	step = 1.0 * 64 / line_h;
-	tex_pos = (limits[0] - HEIGHT / 2 + line_h / 2) * step;	y = -1;
+	limits[0] = -line_h / 2 + HEIGHT / 2;
+	limits[1] = line_h / 2 + HEIGHT / 2;
+	tex_pos = (limits[0] - HEIGHT / 2 + line_h / 2) * (1.0 * 64 / line_h);
+	y = -1;
 	while (++y < HEIGHT)
 	{
 		if (y < limits[0])
@@ -38,7 +40,7 @@ void	render_vertical_line(t_game *game, t_ray *ray, t_dda *dda, int x, int limit
 		{
 			color = get_pixel(game, ray, dda, (int)tex_pos & 63);
 			my_mlx_pixel_put(game, x, y, color);
-			tex_pos += step;
+			tex_pos += (1.0 * 64 / line_h);
 		}
 		else
 			my_mlx_pixel_put(game, x, y, game->pfcolor);
@@ -64,7 +66,7 @@ void	draw_textured_column(t_game *game, t_ray *ray, t_dda *dda, int x)
 		wall_x = game->x + dda->perp_dist * ray->ray_dir_x;
 	wall_x -= floor(wall_x);
 	ray->tex_x = (int)(wall_x * 64.0);
-	render_vertical_line(game, ray, dda, x, draw_limits);
+	render_vertical_line(game, ray, dda, x);
 }
 
 void	raycasting_logic(t_game *game, t_ray *ray, int x)

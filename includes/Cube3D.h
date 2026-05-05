@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:30:06 by malebrun          #+#    #+#             */
-/*   Updated: 2026/05/05 06:05:50 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 06:44:28 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,5 +144,7 @@ void	init_doors(t_game *game);
 void	open_doors(t_game *game);
 int		get_door_color(t_game *game, int y, int x);
 void    gradient(t_game *game);
+void	boolrun(t_game *game);
+void	boolrgb(t_game *game);
 
 #endif
