@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:30:06 by malebrun          #+#    #+#             */
-/*   Updated: 2026/05/05 00:37:28 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 02:51:14 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,22 @@
 # include "../mlx_linux/mlx.h"
 # include "../libft/libft.h"
 # include <sys/time.h>
+
 # define WIDTH 1280
 # define HEIGHT 720
-
 # define FORWARD 119
 # define LEFT 97
 # define RIGHT 100
 # define DOWN 115
+# define RCAM 65363
+# define LCAM 65361
 # define ESCP 65307
 # define LSHIFT 65505
 # define RGBMODE 101
 # define MOVESPEED 0.1
-# define BUFFRUN 2
+# define BUFFRUN 0.1
 # define MOUSE_SENS 0.0005
+# define MM_SIZE 20
 
 typedef struct s_ray
 {
@@ -115,7 +118,7 @@ int		get_map(t_game *game, char **content, int i);
 void	start(t_game *game);
 int		handle_input(int keycode, void *param);
 char	**ft_strdup2(char **array);
-void	raycast(t_game *game);
+int		raycast(t_game *game);
 void	my_mlx_pixel_put(t_game *game, int x, int y, int color);
 int		get_pixel(t_game *game, t_ray *ray, t_dda *dda, int tex_y);
 void	prep_dda(t_game *game, t_ray *ray, t_dda *dda);
@@ -123,5 +126,7 @@ void	exec_dda(t_game *game, t_dda *dda);
 int		create_trgb(t_rgb *rgb, t_game *game);
 int		handle_mouse(int x, int y, t_game *game);
 int		rrint(void);
+void	rotate_player(t_game *game, double angle);
+void    display_minimap(t_game *game);
 
 #endif

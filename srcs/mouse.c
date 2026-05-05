@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edi-maio <edi-maio@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:45 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/02 09:40:06 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 02:33:44 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	handle_mouse(int x, int y, t_game *game)
 		rot_speed = delta_x * MOUSE_SENS;
 		rotate_player(game, rot_speed);
 		mlx_mouse_move(game->mlxptr, game->mlxwinptr, WIDTH / 2, HEIGHT / 2);
-		raycast(game);
 	}
 	return (0);
 }

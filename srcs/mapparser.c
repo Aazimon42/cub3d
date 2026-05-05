@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:37 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 01:31:31 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 02:48:40 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,6 @@ int	parse_lines(char **content, t_game *game)
 {
 	int	i;
 
-	game->textures.no.img = NULL;
-	game->textures.so.img = NULL;
-	game->textures.ea.img = NULL;
-	game->textures.we.img = NULL;
 	game->ccolor.red = -1;
 	game->ccolor.blue = -1;
 	game->ccolor.green = -1;
@@ -76,6 +72,7 @@ int	parse_lines(char **content, t_game *game)
 	game->fcolor.blue = -1;
 	game->fcolor.green = -1;
 	game->rgbmode = 0;
+	game->is_running = 0;
 	i = 0;
 	while (content[i])
 	{
@@ -132,6 +129,10 @@ int	parse_file(t_game *game, char *name)
 	game->mlxptr = mlx_init();
 	if (!game->mlxptr)
 		return (-1);
+	game->textures.no.img = NULL;
+	game->textures.so.img = NULL;
+	game->textures.ea.img = NULL;
+	game->textures.we.img = NULL;
 	i = parse_lines(content, game);
 	if (i == -1 || !check_images(game))
 		return (-1);

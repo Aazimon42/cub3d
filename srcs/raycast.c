@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:52 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/02 09:52:37 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 02:31:02 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	raycasting_logic(t_game *game, t_ray *ray, int x)
 	draw_textured_column(game, ray, &dda, x);
 }
 
-void	raycast(t_game *game)
+int	raycast(t_game *game)
 {
 	int		i;
 	t_ray	ray;
@@ -89,5 +89,7 @@ void	raycast(t_game *game)
 		raycasting_logic(game, &ray, i);
 		i++;
 	}
+	display_minimap(game);
 	mlx_put_image_to_window(game->mlxptr, game->mlxwinptr, game->img.img, 0, 0);
+	return (0);
 }

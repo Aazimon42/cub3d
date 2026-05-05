@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inputhandler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edi-maio <edi-maio@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:14 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/02 09:36:18 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 02:49:01 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static void	move(int key, t_game *game)
 		game->y = y;
 		game->pfcolor = create_trgb(&game->fcolor, game);
 		game->pccolor = create_trgb(&game->ccolor, game);
-		raycast(game);
 	}
 }
 
@@ -99,6 +98,10 @@ int	handle_input(int keycode, void *param)
 		move(LEFT, game);
 	if (keycode == RIGHT)
 		move(RIGHT, game);
+	if (keycode == RCAM)
+		rotate_player(game, MOUSE_SENS * 100);
+	if (keycode == LCAM)
+		rotate_player(game, -MOUSE_SENS * 100);
 	if (keycode == LSHIFT)
 		boolrun(game);
 	if (keycode == RGBMODE)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edi-maio <edi-maio@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:08 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/02 09:36:12 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 02:46:52 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	start(t_game *game)
 	mlx_put_image_to_window(game->mlxptr, game->mlxwinptr, game->img.img, 0, 0);
 	mlx_hook(game->mlxwinptr, 17, 0, free_all, game);
 	mlx_hook(game->mlxwinptr, 2, 1L << 0, handle_input, game);
-	mlx_mouse_hide(game->mlxptr, game->mlxwinptr);
 	mlx_hook(game->mlxwinptr, 6, 1L << 6, handle_mouse, game);
+	mlx_mouse_hide(game->mlxptr, game->mlxwinptr);
 	game->pfcolor = create_trgb(&game->fcolor, game);
 	game->pccolor = create_trgb(&game->ccolor, game);
-	raycast(game);
+	mlx_loop_hook(game->mlxptr, raycast, game);
 	mlx_loop(game->mlxptr);
 }
