@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:52 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 02:31:02 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 06:35:34 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ void	render_vertical_line(t_game *game, t_ray *ray, t_dda *dda, int x, int limit
 
 	line_h = (int)(HEIGHT / dda->perp_dist);
 	step = 1.0 * 64 / line_h;
-	tex_pos = (limits[0] - HEIGHT / 2 + line_h / 2) * step;
-	y = -1;
+	tex_pos = (limits[0] - HEIGHT / 2 + line_h / 2) * step;	y = -1;
 	while (++y < HEIGHT)
 	{
 		if (y < limits[0])
@@ -55,6 +54,10 @@ void	draw_textured_column(t_game *game, t_ray *ray, t_dda *dda, int x)
 	line_h = (int)(HEIGHT / dda->perp_dist);
 	draw_limits[0] = -line_h / 2 + HEIGHT / 2;
 	draw_limits[1] = line_h / 2 + HEIGHT / 2;
+	if (draw_limits[0] < 0)
+		draw_limits[0] = 0;
+	if (draw_limits[1] >= HEIGHT)
+		draw_limits[1] = HEIGHT - 1;
 	if (dda->side == 0)
 		wall_x = game->y + dda->perp_dist * ray->ray_dir_y;
 	else
