@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:37 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 06:37:29 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 07:39:59 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	parse_lines(char **content, t_game *game)
 		while (content[i][0] == '\n')
 			i++;
 		if (!parse_line(content[i], game) && !get_textures(game, content[i]))
-			return (0);
+			return (-1);
 		if (game->textures.no.img && game->textures.so.img
 			&& game->textures.ea.img && game->textures.we.img
 			&& game->ccolor.red != -1 && game->fcolor.red != -1)
@@ -136,10 +136,11 @@ int	parse_file(t_game *game, char *name)
 			"textures/door.xpm", &game->textures.door.width,
 			&game->textures.door.height);
 	i = parse_lines(content, game);
-	if (i == -1 || !check_images(game))
+	if (!check_images(game) || i == -1 || get_map(game, content, i) == -1)
+	{
+		free2d(content);
 		return (-1);
-	if (get_map(game, content, i) == -1)
-		return (-1);
+	}
 	free2d(content);
 	init_doors(game);
 	return (0);

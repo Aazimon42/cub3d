@@ -6,7 +6,7 @@
 #    By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/25 19:03:13 by edi-maio          #+#    #+#              #
-#    Updated: 2026/05/05 06:20:12 by edi-maio         ###   ########.fr        #
+#    Updated: 2026/05/05 07:12:24 by edi-maio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRCS = $(SRC_DIR)main.c \
 	   $(SRC_DIR)mouse.c \
 	   $(SRC_DIR)minimap.c \
 	   $(SRC_DIR)doors.c \
-	   $(SRC_DIR)surprise.c
+	   $(SRC_DIR)utils2.c
 
 
 MLX = mlx_linux/libmlx.a

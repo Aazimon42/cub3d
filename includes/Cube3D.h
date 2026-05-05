@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:30:06 by malebrun          #+#    #+#             */
-/*   Updated: 2026/05/05 07:06:49 by malebrun         ###   ########.fr       */
+/*   Updated: 2026/05/05 07:27:51 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,5 +147,6 @@ void	gradient(t_game *game);
 void	boolrun(t_game *game);
 void	boolrgb(t_game *game);
 int		validrgb(t_rgb colors);
+void	get_limits(int line_h, int limits[2]);
 
 #endif

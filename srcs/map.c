@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:29 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 07:11:17 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 07:44:39 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	check_closed_map(char **map, int i)
 		while (map[i][j])
 		{
 			if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'S'
-				|| map[i][j] == 'E' || map[i][j] == 'W')
+				|| map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'D')
 			{
 				if (i == 0 || !map[i + 1] || j == 0 || !map[i][j + 1]
 					|| (int)ft_strlen(map[i - 1]) <= j || map[i - 1][j] == ' '
@@ -123,11 +123,12 @@ int	get_map(t_game *game, char **content, int i)
 	while (content[i] && content[i][0] == '\n')
 		i++;
 	if (!content[i])
+	{
+		print_error("There is no game\n");
 		return (-1);
+	}
 	game->map = ft_strdup2(content + i);
-	if (!check_map(game->map))
-		return (-1);
-	if (!check_closed_map(game->map, 0))
+	if (!check_map(game->map) || !check_closed_map(game->map, 0))
 		return (-1);
 	if (!check_player(game))
 	{
