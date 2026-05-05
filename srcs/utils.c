@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:37:11 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 04:03:55 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 06:21:41 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,28 @@ void	free2d(char **array)
 
 int	free_all(t_game *game)
 {
-	if (!game)
-		return (0);
-	if (game->map)
+	if (game->mlxwinptr && game->mlxptr)
+		mlx_destroy_window(game->mlxptr, game->mlxwinptr);
+	if (game->img.img && game->mlxptr)
+		mlx_destroy_image(game->mlxptr, game->img.img);
+	if (game->textures.no.img && game->mlxptr)
+		mlx_destroy_image(game->mlxptr, game->textures.no.img);
+	if (game->textures.so.img && game->mlxptr)
+		mlx_destroy_image(game->mlxptr, game->textures.so.img);
+	if (game->textures.ea.img && game->mlxptr)
+		mlx_destroy_image(game->mlxptr, game->textures.ea.img);
+	if (game->textures.we.img && game->mlxptr)
+		mlx_destroy_image(game->mlxptr, game->textures.we.img);
+	if (game->textures.door.img && game->mlxptr)
+		mlx_destroy_image(game->mlxptr, game->textures.door.img);
+	if (game->mlxptr)
+		mlx_destroy_display(game->mlxptr);
+	if (game->mlxptr)
+		free(game->mlxptr);
+	if (game->map && game->map[0])
 		free2d(game->map);
 	if (game->doors)
 		free(game->doors);
-	if (game->textures.no.img)
-		mlx_destroy_image(game->mlxptr, game->textures.no.img);
-	if (game->textures.so.img)
-		mlx_destroy_image(game->mlxptr, game->textures.so.img);
-	if (game->textures.ea.img)
-		mlx_destroy_image(game->mlxptr, game->textures.ea.img);
-	if (game->textures.we.img)
-		mlx_destroy_image(game->mlxptr, game->textures.we.img);
-	if (game->mlxwinptr)
-		mlx_destroy_window(game->mlxptr, game->mlxwinptr);
-	mlx_destroy_display(game->mlxptr);
-	if (game->mlxptr)
-		free(game->mlxptr);
 	exit(0);
 	return (0);
 }

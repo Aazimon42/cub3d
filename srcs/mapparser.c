@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:37 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 04:00:26 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 06:27:43 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	parse_lines(char **content, t_game *game)
 	game->fcolor.green = -1;
 	game->rgbmode = 0;
 	game->is_running = 0;
+	game->active = 0;
 	i = 0;
 	while (content[i])
 	{
@@ -131,7 +132,6 @@ int	parse_file(t_game *game, char *name)
 	game->mlxptr = mlx_init();
 	if (!game->mlxptr)
 		return (-1);
-	ft_bzero(&game->textures, sizeof(t_texture));
 	game->textures.door.img = mlx_xpm_file_to_image(game->mlxptr,
 		"textures/door.xpm", &game->textures.door.width,
 		&game->textures.door.height);

@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:20 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 03:22:39 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 06:22:40 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int ac, char **av)
 		print_error("Program takes one .cub file as argument\n");
 		return (1);
 	}
+	ft_bzero(&game, sizeof(t_game));
 	if (parse_file(&game, av[1]) == -1)
 	{
 		free_all(&game);

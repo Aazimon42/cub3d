@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:29 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 03:14:23 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 06:03:53 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ int	check_player(t_game *game)
 			{
 				game->startdirection = game->map[i][j];
 				player_count++;
-				game->x = j;
-				game->y = i;
+				game->x = j + 0.5;
+				game->y = i + 0.5;
 			}
 			j++;
 		}

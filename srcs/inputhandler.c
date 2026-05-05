@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:14 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 03:22:16 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 05:58:56 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ static void	move(int key, t_game *game)
 	if (moveable(x, y, game)) {
 		game->x = x;
 		game->y = y;
-		game->pccolor = create_trgb(&game->ccolor, game);
-		game->pfcolor = game->pccolor;
 		open_doors(game);
 	}
 }
@@ -89,23 +87,23 @@ int	handle_input(int keycode, void *param)
 	t_game	*game;
 
 	game = (t_game *) param;
-	if (keycode == ESCP)
-		free_all(game);
-	if (keycode == FORWARD)
-		move(FORWARD, game);
-	if (keycode == DOWN)
-		move(DOWN, game);
-	if (keycode == LEFT)
-		move(LEFT, game);
-	if (keycode == RIGHT)
-		move(RIGHT, game);
-	if (keycode == RCAM)
-		rotate_player(game, MOUSE_SENS * 100);
-	if (keycode == LCAM)
-		rotate_player(game, -MOUSE_SENS * 100);
-	if (keycode == LSHIFT)
-		boolrun(game);
-	if (keycode == RGBMODE)
-		boolrgb(game);
+	if (!game->active)
+	{
+		if (keycode == ESCP)
+			free_all(game);
+		if (keycode == FORWARD || keycode == DOWN
+				|| keycode == LEFT || keycode == RIGHT)
+			move(keycode, game);
+		if (keycode == RCAM)
+			rotate_player(game, MOUSE_SENS * 100);
+		if (keycode == LCAM)
+			rotate_player(game, -MOUSE_SENS * 100);
+		if (keycode == LSHIFT)
+			boolrun(game);
+		if (keycode == RGBMODE)
+			boolrgb(game);
+		if (keycode == CHANGE_COLOR)
+			gradient(game);
+	}
 	return (0);
 }

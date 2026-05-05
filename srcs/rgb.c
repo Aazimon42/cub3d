@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:58 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 04:02:27 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 06:00:03 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,33 @@ int	parse_line(char *line, t_game *game)
 	else
 		return (0);
 	return (1);
+}
+
+void    gradient(t_game *game)
+{
+    int      target;
+    float    t;
+    int      steps;
+    int      i;
+
+	game->active = 1;
+    target = rrint() << 16 | rrint() << 8 | rrint();
+    steps = 20;
+    i = 0;
+    while (i <= steps)
+    {
+        t = (float)i / steps;
+		game->ccolor.red = (int)(((game->ccolor.red) * (1 - t)
+					+ (target >> 16 & 0xFF) * t));
+		game->ccolor.green = (int)(((game->ccolor.green) * (1 - t)
+					+ (target >> 8 & 0xFF) * t));
+		game->ccolor.blue = (int)(((game->ccolor.blue) * (1 - t)
+					+ (target & 0xFF) * t));
+		game->pccolor = create_trgb(&game->ccolor, game);
+		game->pfcolor = game->pccolor;
+        raycast(game);
+        mlx_do_sync(game->mlxptr);
+        i++;
+    }
+	game->active = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:08 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 04:01:32 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 06:28:46 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 
 void	start(t_game *game)
 {
+	game->pccolor = create_trgb(&game->ccolor, game);
+	game->pfcolor = create_trgb(&game->fcolor, game);
 	game->textures.no.addr = mlx_get_data_addr(game->textures.no.img, &game->textures.no.bpp, &game->textures.no.len, &game->textures.no.endian);
 	game->textures.so.addr = mlx_get_data_addr(game->textures.so.img, &game->textures.so.bpp, &game->textures.so.len, &game->textures.so.endian);
 	game->textures.ea.addr = mlx_get_data_addr(game->textures.ea.img, &game->textures.ea.bpp, &game->textures.ea.len, &game->textures.ea.endian);

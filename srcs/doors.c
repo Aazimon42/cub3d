@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 01:36:40 by malebrun          #+#    #+#             */
-/*   Updated: 2026/05/05 03:59:04 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 06:03:00 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ static int is_similar(t_rgb a, t_rgb b)
     dr = a.red - b.red;
     dg = a.green - b.green;
     db = a.blue - b.blue;
-
-    return ((dr * dr + dg * dg + db * db) < (50 * 50));
+    return ((dr * dr + dg * dg + db * db) < (67 * 67));
 }
 
 void    open_doors(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:30:06 by malebrun          #+#    #+#             */
-/*   Updated: 2026/05/05 03:47:29 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 06:05:50 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include "../libft/libft.h"
 # include <sys/time.h>
 
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 # define FORWARD 119
 # define LEFT 97
 # define RIGHT 100
@@ -32,7 +32,8 @@
 # define LCAM 65361
 # define ESCP 65307
 # define LSHIFT 65505
-# define RGBMODE 101
+# define RGBMODE 65402
+#define CHANGE_COLOR 101
 # define MOVESPEED 0.1
 # define BUFFRUN 0.1
 # define MOUSE_SENS 0.0005
@@ -109,6 +110,7 @@ typedef struct s_game
 	t_img		img;
 	char		startdirection;
 	int			is_running;
+	int			active;
 	int			rgbmode;
 	t_rgb		fcolor;
 	t_rgb		ccolor;
@@ -141,5 +143,6 @@ void    display_minimap(t_game *game);
 void	init_doors(t_game *game);
 void	open_doors(t_game *game);
 int		get_door_color(t_game *game, int y, int x);
+void    gradient(t_game *game);
 
 #endif
