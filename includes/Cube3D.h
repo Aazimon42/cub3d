@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:30:06 by malebrun          #+#    #+#             */
-/*   Updated: 2026/05/05 06:44:28 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 07:06:49 by malebrun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define ESCP 65307
 # define LSHIFT 65505
 # define RGBMODE 65402
-#define CHANGE_COLOR 101
+# define CHANGE_COLOR 101
 # define MOVESPEED 0.1
 # define BUFFRUN 0.1
 # define MOUSE_SENS 0.0005
@@ -71,10 +71,10 @@ typedef struct s_rgb
 
 typedef struct s_door
 {
-	int     x;
-	int     y;
-	t_rgb   color;
-}   t_door;
+	int		x;
+	int		y;
+	t_rgb	color;
+}	t_door;
 
 typedef struct s_img
 {
@@ -117,8 +117,8 @@ typedef struct s_game
 	t_texture	textures;
 	int			pfcolor;
 	int			pccolor;
-	int         door_count;
-	t_door      *doors;
+	int			door_count;
+	t_door		*doors;
 }	t_game;
 
 void	print_error(char *message);
@@ -139,12 +139,13 @@ int		create_trgb(t_rgb *rgb, t_game *game);
 int		handle_mouse(int x, int y, t_game *game);
 int		rrint(void);
 void	rotate_player(t_game *game, double angle);
-void    display_minimap(t_game *game);
+void	display_minimap(t_game *game);
 void	init_doors(t_game *game);
 void	open_doors(t_game *game);
 int		get_door_color(t_game *game, int y, int x);
-void    gradient(t_game *game);
+void	gradient(t_game *game);
 void	boolrun(t_game *game);
 void	boolrgb(t_game *game);
+int		validrgb(t_rgb colors);
 
 #endif

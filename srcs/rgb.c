@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:58 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 06:40:41 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 07:06:25 by malebrun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ int	parse_line(char *line, t_game *game)
 	int		i;
 
 	i = 1;
-	if (line[i] != ' ')
-		return (0);
-	if (!line[i] || !isint(&line[i], ','))
+	if (!line[i] || line[i] != ' ' || !isint(&line[i], ','))
 		return (0);
 	colors.red = ft_atoi(&line[i]);
 	skipto(line, &i, ',');
@@ -71,12 +69,8 @@ int	parse_line(char *line, t_game *game)
 	if (!line[i] || !isint(&line[i], '\0'))
 		return (0);
 	colors.blue = ft_atoi(&line[i]);
-	if (colors.red < 0 || colors.red > 255 || colors.green < 0
-		|| colors.green > 255 || colors.blue < 0 || colors.blue > 255)
-	{
-		print_error("color value need to be in between 0 and 255");
+	if (!validrgb(colors))
 		return (0);
-	}
 	if (line[0] == 'F' && game->fcolor.red == -1)
 		game->fcolor = colors;
 	else if (line[0] == 'C' && game->ccolor.red == -1)
