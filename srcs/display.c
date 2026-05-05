@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:08 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 06:28:46 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 07:07:38 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,39 @@ void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+int	set_data(t_game	*g)
+{
+	g->pccolor = create_trgb(&g->ccolor, g);
+	g->pfcolor = create_trgb(&g->fcolor, g);
+	g->textures.no.addr = mlx_get_data_addr(g->textures.no.img,
+			&g->textures.no.bpp, &g->textures.no.len, &g->textures.no.endian);
+	g->textures.so.addr = mlx_get_data_addr(g->textures.so.img,
+			&g->textures.so.bpp, &g->textures.so.len, &g->textures.so.endian);
+	g->textures.ea.addr = mlx_get_data_addr(g->textures.ea.img,
+			&g->textures.ea.bpp, &g->textures.ea.len, &g->textures.ea.endian);
+	g->textures.we.addr = mlx_get_data_addr(g->textures.we.img,
+			&g->textures.we.bpp, &g->textures.we.len, &g->textures.we.endian);
+	g->textures.door.addr = mlx_get_data_addr(g->textures.door.img,
+			&g->textures.door.bpp, &g->textures.door.len,
+			&g->textures.door.endian);
+	g->mlxwinptr = mlx_new_window(g->mlxptr, WIDTH, HEIGHT, "Cub3D");
+	if (!g->mlxwinptr)
+		return (0);
+	g->img.img = mlx_new_image(g->mlxptr, WIDTH, HEIGHT);
+	if (!g->img.img)
+		return (0);
+	g->img.addr = mlx_get_data_addr(g->img.img, &g->img.bpp,
+			&g->img.len, &g->img.endian);
+	return (1);
+}
+
 void	start(t_game *game)
 {
-	game->pccolor = create_trgb(&game->ccolor, game);
-	game->pfcolor = create_trgb(&game->fcolor, game);
-	game->textures.no.addr = mlx_get_data_addr(game->textures.no.img, &game->textures.no.bpp, &game->textures.no.len, &game->textures.no.endian);
-	game->textures.so.addr = mlx_get_data_addr(game->textures.so.img, &game->textures.so.bpp, &game->textures.so.len, &game->textures.so.endian);
-	game->textures.ea.addr = mlx_get_data_addr(game->textures.ea.img, &game->textures.ea.bpp, &game->textures.ea.len, &game->textures.ea.endian);
-	game->textures.we.addr = mlx_get_data_addr(game->textures.we.img, &game->textures.we.bpp, &game->textures.we.len, &game->textures.we.endian);
-	game->textures.door.addr = mlx_get_data_addr(game->textures.door.img, &game->textures.door.bpp, &game->textures.door.len, &game->textures.door.endian);
-	game->mlxwinptr = mlx_new_window(game->mlxptr, WIDTH, HEIGHT, "Cub3D");
-	if (!game->mlxwinptr)
-		return ;
-	game->img.img = mlx_new_image(game->mlxptr, WIDTH, HEIGHT);
-	if (!game->img.img)
-		return ;
-	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bpp, &game->img.len, &game->img.endian);
+	if (!set_data(game))
+	{
+		print_error("Failed to initialize graphics");
+		free_all(game);
+	}
 	mlx_put_image_to_window(game->mlxptr, game->mlxwinptr, game->img.img, 0, 0);
 	mlx_hook(game->mlxwinptr, 17, 0, free_all, game);
 	mlx_hook(game->mlxwinptr, 2, 1L << 0, handle_input, game);

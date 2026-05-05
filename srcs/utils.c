@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:37:11 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 06:21:41 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 07:04:48 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	free_all(t_game *game)
 
 int	get_door_color(t_game *game, int y, int x)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < game->door_count)

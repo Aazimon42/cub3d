@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:29 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 06:03:53 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 07:11:17 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,10 @@ int	check_map(char **map)
 	return (1);
 }
 
-int	check_closed_map(char **map)
+int	check_closed_map(char **map, int i)
 {
-	int	i;
 	int	j;
 
-	i = 0;
 	while (map[i])
 	{
 		j = 0;
@@ -52,8 +50,9 @@ int	check_closed_map(char **map)
 				|| map[i][j] == 'E' || map[i][j] == 'W')
 			{
 				if (i == 0 || !map[i + 1] || j == 0 || !map[i][j + 1]
-					|| (int)ft_strlen(map[i - 1]) <= j || map[i - 1][j] == ' ' || map[i + 1][j] == ' '
-					|| map[i][j - 1] == ' ' || (int)ft_strlen(map[i + 1]) <= j || map[i + 1][j] == ' ')
+					|| (int)ft_strlen(map[i - 1]) <= j || map[i - 1][j] == ' '
+					|| map[i + 1][j] == ' ' || map[i][j - 1] == ' '
+					|| (int)ft_strlen(map[i + 1]) <= j || map[i + 1][j] == ' ')
 				{
 					print_error("Map not closed\n");
 					return (0);
@@ -91,12 +90,7 @@ int	check_player(t_game *game)
 		}
 		i++;
 	}
-	if (player_count != 1)
-	{
-		print_error("There should be exactly one player in the map\n");
-		return (0);
-	}
-	return (1);
+	return (player_count == 1);
 }
 
 void	set_direction(t_game *game)
@@ -133,10 +127,13 @@ int	get_map(t_game *game, char **content, int i)
 	game->map = ft_strdup2(content + i);
 	if (!check_map(game->map))
 		return (-1);
-	if (!check_closed_map(game->map))
+	if (!check_closed_map(game->map, 0))
 		return (-1);
 	if (!check_player(game))
+	{
+		print_error("There must be exactly one player in the map\n");
 		return (-1);
+	}
 	if (game->startdirection == 'N')
 	{
 		game->dx = 0;
