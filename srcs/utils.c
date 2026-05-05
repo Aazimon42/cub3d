@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edi-maio <edi-maio@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:37:11 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/02 09:37:29 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 04:03:55 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	free_all(t_game *game)
 		return (0);
 	if (game->map)
 		free2d(game->map);
+	if (game->doors)
+		free(game->doors);
 	if (game->textures.no.img)
 		mlx_destroy_image(game->mlxptr, game->textures.no.img);
 	if (game->textures.so.img)
@@ -76,5 +78,20 @@ int	free_all(t_game *game)
 	if (game->mlxptr)
 		free(game->mlxptr);
 	exit(0);
+	return (0);
+}
+
+int	get_door_color(t_game *game, int y, int x)
+{
+	int i;
+
+	i = 0;
+	while (i < game->door_count)
+	{
+		if (game->doors[i].y == y && game->doors[i].x == x)
+			return (0 << 24 | game->doors[i].color.red << 16
+				| game->doors[i].color.green << 8 | game->doors[i].color.blue);
+		i++;
+	}
 	return (0);
 }

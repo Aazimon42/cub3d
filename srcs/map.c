@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:29 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 01:30:56 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 03:14:23 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_map(char **map)
 		{
 			if (map[i][j] != ' ' && map[i][j] != '1' && map[i][j] != '0'
 				&& map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E'
-				&& map[i][j] != 'W' && map[i][j] != '\n')
+				&& map[i][j] != 'W' && map[i][j] != 'D' && map[i][j] != '\n')
 			{
 				print_error("Invalid character in map\n");
 				return (0);

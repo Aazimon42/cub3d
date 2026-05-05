@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:08 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 02:46:52 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 04:01:32 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,13 @@ int	get_pixel(t_game *game, t_ray *ray, t_dda *dda, int tex_y)
 		tex = &game->textures.we;
 	else if (dda->side == 1 && ray->ray_dir_y > 0)
 		tex = &game->textures.so;
-	else
+	else if (dda->side == 1 && ray->ray_dir_y < 0)
 		tex = &game->textures.no;
+	if (dda->hit == 2)
+		tex = &game->textures.door;
 	dst = tex->addr + (tex_y * tex->len + ray->tex_x * (tex->bpp / 8));
+	if (dda->hit == 2 && *(unsigned int *)dst == 16777215)
+		return (get_door_color(game, dda->map_y, dda->map_x));
 	color = *(unsigned int *)dst;
 	return (color);
 }
@@ -47,6 +51,7 @@ void	start(t_game *game)
 	game->textures.so.addr = mlx_get_data_addr(game->textures.so.img, &game->textures.so.bpp, &game->textures.so.len, &game->textures.so.endian);
 	game->textures.ea.addr = mlx_get_data_addr(game->textures.ea.img, &game->textures.ea.bpp, &game->textures.ea.len, &game->textures.ea.endian);
 	game->textures.we.addr = mlx_get_data_addr(game->textures.we.img, &game->textures.we.bpp, &game->textures.we.len, &game->textures.we.endian);
+	game->textures.door.addr = mlx_get_data_addr(game->textures.door.img, &game->textures.door.bpp, &game->textures.door.len, &game->textures.door.endian);
 	game->mlxwinptr = mlx_new_window(game->mlxptr, WIDTH, HEIGHT, "Cub3D");
 	if (!game->mlxwinptr)
 		return ;
@@ -59,8 +64,6 @@ void	start(t_game *game)
 	mlx_hook(game->mlxwinptr, 2, 1L << 0, handle_input, game);
 	mlx_hook(game->mlxwinptr, 6, 1L << 6, handle_mouse, game);
 	mlx_mouse_hide(game->mlxptr, game->mlxwinptr);
-	game->pfcolor = create_trgb(&game->fcolor, game);
-	game->pccolor = create_trgb(&game->ccolor, game);
 	mlx_loop_hook(game->mlxptr, raycast, game);
 	mlx_loop(game->mlxptr);
 }

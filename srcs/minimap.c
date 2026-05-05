@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 01:55:58 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 02:42:13 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 04:07:42 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ static void    draw_minimap_tiles(t_game *game, int ox, int oy)
         {
             if (game->map[oy + i][ox + j] == '1')
                 draw_minimap_cell(game, j * 10, i * 10, 0x000000);
+            else if (game->map[oy + i][ox + j] == 'D')
+                draw_minimap_cell(game, j * 10, i * 10,
+                    get_door_color(game, oy + i, ox + j));
             else
                 draw_minimap_cell(game, j * 10, i * 10, 0xFFFFFF);
             j++;

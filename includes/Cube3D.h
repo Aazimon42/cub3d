@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:30:06 by malebrun          #+#    #+#             */
-/*   Updated: 2026/05/05 02:51:14 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 03:47:29 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,13 @@ typedef struct s_rgb
 	int	blue;
 }	t_rgb;
 
+typedef struct s_door
+{
+	int     x;
+	int     y;
+	t_rgb   color;
+}   t_door;
+
 typedef struct s_img
 {
 	void	*img;
@@ -85,6 +92,7 @@ typedef struct s_texture
 	t_img	so;
 	t_img	ea;
 	t_img	we;
+	t_img	door;
 }	t_texture;
 
 typedef struct s_game
@@ -107,6 +115,8 @@ typedef struct s_game
 	t_texture	textures;
 	int			pfcolor;
 	int			pccolor;
+	int         door_count;
+	t_door      *doors;
 }	t_game;
 
 void	print_error(char *message);
@@ -128,5 +138,8 @@ int		handle_mouse(int x, int y, t_game *game);
 int		rrint(void);
 void	rotate_player(t_game *game, double angle);
 void    display_minimap(t_game *game);
+void	init_doors(t_game *game);
+void	open_doors(t_game *game);
+int		get_door_color(t_game *game, int y, int x);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:37 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 02:48:40 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 04:00:26 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	check_images(t_game *game)
 {
 	if (!(game->textures.no.img && game->textures.so.img
-			&& game->textures.ea.img && game->textures.we.img))
+			&& game->textures.ea.img && game->textures.we.img
+			&& game->textures.door.img))
 	{
 		print_error("One or more texture missing\n");
 		return (0);
@@ -23,7 +24,8 @@ int	check_images(t_game *game)
 	if (game->textures.no.width != 64 || game->textures.no.height != 64
 		|| game->textures.so.width != 64 || game->textures.so.height != 64
 		|| game->textures.ea.width != 64 || game->textures.ea.height != 64
-		|| game->textures.we.width != 64 || game->textures.we.height != 64)
+		|| game->textures.we.width != 64 || game->textures.we.height != 64
+		|| game->textures.door.width != 64 || game->textures.door.height != 64)
 	{
 		print_error("Textures should be 64x64\n");
 		return (0);
@@ -129,15 +131,16 @@ int	parse_file(t_game *game, char *name)
 	game->mlxptr = mlx_init();
 	if (!game->mlxptr)
 		return (-1);
-	game->textures.no.img = NULL;
-	game->textures.so.img = NULL;
-	game->textures.ea.img = NULL;
-	game->textures.we.img = NULL;
+	ft_bzero(&game->textures, sizeof(t_texture));
+	game->textures.door.img = mlx_xpm_file_to_image(game->mlxptr,
+		"textures/door.xpm", &game->textures.door.width,
+		&game->textures.door.height);
 	i = parse_lines(content, game);
 	if (i == -1 || !check_images(game))
 		return (-1);
 	if (get_map(game, content, i) == -1)
 		return (-1);
 	free2d(content);
+	init_doors(game);
 	return (0);
 }

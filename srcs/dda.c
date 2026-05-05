@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edi-maio <edi-maio@42angouleme.fr>         +#+  +:+       +#+        */
+/*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:35:58 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/02 09:36:05 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 03:31:35 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	exec_dda(t_game *game, t_dda *dda)
 			dda->hit = 1;
 			break ;
 		}
-		if (game->map[dda->map_y][dda->map_x] == '1')
-			dda->hit = 1;
+		if (game->map[dda->map_y][dda->map_x] == 'D')
+			dda->hit = 2;
 	}
 	if (dda->side == 0)
 		dda->perp_dist = (dda->side_dist_x - dda->delta_dist_x);

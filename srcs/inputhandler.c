@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:14 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 02:49:01 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/05 03:22:16 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	moveable(float x, float y, t_game *game)
 		return (0);
 	if (ix >= (int)ft_strlen(game->map[iy]))
 		return (0);
-	if (game->map[iy][ix] != '1' && game->map[iy][ix] != ' ')
+	if (game->map[iy][ix] != '1' && game->map[iy][ix] != 'D')
 		return (1);
 	return (0);
 }
@@ -62,8 +62,9 @@ static void	move(int key, t_game *game)
 	if (moveable(x, y, game)) {
 		game->x = x;
 		game->y = y;
-		game->pfcolor = create_trgb(&game->fcolor, game);
 		game->pccolor = create_trgb(&game->ccolor, game);
+		game->pfcolor = game->pccolor;
+		open_doors(game);
 	}
 }
 
