@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 17:30:06 by malebrun          #+#    #+#             */
-/*   Updated: 2026/05/05 07:27:51 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/06 21:33:32 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_texture
 
 typedef struct s_game
 {
+	char		**content;
 	char		**map;
 	float		x;
 	float		y;
@@ -121,7 +122,7 @@ typedef struct s_game
 	t_door		*doors;
 }	t_game;
 
-void	print_error(char *message);
+void	print_error(char *message, t_game *game);
 int		parse_file(t_game *game, char *name);
 int		free_all(t_game *game);
 int		parse_line(char *line, t_game *game);
@@ -146,7 +147,7 @@ int		get_door_color(t_game *game, int y, int x);
 void	gradient(t_game *game);
 void	boolrun(t_game *game);
 void	boolrgb(t_game *game);
-int		validrgb(t_rgb colors);
+int		validrgb(t_rgb colors, t_game *game);
 void	get_limits(int line_h, int limits[2]);
 
 #endif

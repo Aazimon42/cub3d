@@ -1,12 +1,12 @@
 SO ./textures/jonpork.xpm
 EA ./textures/jonpork.xpm
-C 225,0,255
+C 0,0,0
 NO ./textures/jonpork.xpm
 
 WE ./textures/jonpork.xpm
-F 220,100,55
+F 0,0,0
 
 
 111
-1N1
+1N 1
 111

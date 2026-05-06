@@ -1,12 +1,19 @@
 
-SO ./textures/so/malebrun.xpm
+
+
+
+
+
+SO           ./textures/so/malebrun.xpm
 EA ./textures/ea/malebrun.xpm
 C 225,0,255
 
-NO ./textures/no/malebrun.xpm
-F 220,100,0
-WE ./textures/we/malebrun.xpm
+NO                ./textures/no/malebrun.xpm
+F 200,100,0
 
+
+
+WE ./textures/we/malebrun.xpm
 
 
 

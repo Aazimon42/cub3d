@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:29 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 07:44:39 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/06 21:26:38 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_map(char **map)
 				&& map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E'
 				&& map[i][j] != 'W' && map[i][j] != 'D' && map[i][j] != '\n')
 			{
-				print_error("Invalid character in map\n");
+				print_error("Invalid character in map\n", NULL);
 				return (0);
 			}
 			j++;
@@ -54,7 +54,7 @@ int	check_closed_map(char **map, int i)
 					|| map[i + 1][j] == ' ' || map[i][j - 1] == ' '
 					|| (int)ft_strlen(map[i + 1]) <= j || map[i + 1][j] == ' ')
 				{
-					print_error("Map not closed\n");
+					print_error("Map not closed\n", NULL);
 					return (0);
 				}
 			}
@@ -124,7 +124,7 @@ int	get_map(t_game *game, char **content, int i)
 		i++;
 	if (!content[i])
 	{
-		print_error("There is no game\n");
+		print_error("There is no game\n", game);
 		return (-1);
 	}
 	game->map = ft_strdup2(content + i);
@@ -132,7 +132,7 @@ int	get_map(t_game *game, char **content, int i)
 		return (-1);
 	if (!check_player(game))
 	{
-		print_error("There must be exactly one player in the map\n");
+		print_error("There must be exactly one player in the map\n", game);
 		return (-1);
 	}
 	if (game->startdirection == 'N')

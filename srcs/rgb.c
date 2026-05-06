@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:58 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 07:06:25 by malebrun         ###   ########.fr       */
+/*   Updated: 2026/05/06 21:33:39 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	parse_line(char *line, t_game *game)
 	if (!line[i] || !isint(&line[i], '\0'))
 		return (0);
 	colors.blue = ft_atoi(&line[i]);
-	if (!validrgb(colors))
+	if (!validrgb(colors, game))
 		return (0);
 	if (line[0] == 'F' && game->fcolor.red == -1)
 		game->fcolor = colors;

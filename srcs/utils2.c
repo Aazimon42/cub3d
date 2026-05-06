@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:37:04 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 07:34:51 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/06 21:33:19 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ void	boolrgb(t_game *game)
 		game->rgbmode = 1;
 }
 
-int	validrgb(t_rgb colors)
+int	validrgb(t_rgb colors, t_game *game)
 {
 	if (colors.red < 0 || colors.red > 255 || colors.green < 0
 		|| colors.green > 255 || colors.blue < 0 || colors.blue > 255)
 	{
-		print_error("colors should be between 0 and 255\n");
+		print_error("colors should be between 0 and 255\n", game);
 		return (0);
 	}
 	return (1);

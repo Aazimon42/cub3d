@@ -6,16 +6,18 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:37:11 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 07:04:48 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/06 21:24:10 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Cube3D.h"
 
-void	print_error(char *message)
+void	print_error(char *message, t_game *game)
 {
 	write(2, "Error\n", 6);
 	write(2, message, ft_strlen(message));
+	if (game)
+		free_all(game);
 }
 
 char	**ft_strdup2(char **array)
@@ -76,8 +78,8 @@ int	free_all(t_game *game)
 		mlx_destroy_display(game->mlxptr);
 	if (game->mlxptr)
 		free(game->mlxptr);
-	if (game->map && game->map[0])
-		free2d(game->map);
+	free2d(game->map);
+	free2d(game->content);
 	if (game->doors)
 		free(game->doors);
 	exit(0);

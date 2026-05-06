@@ -6,7 +6,7 @@
 /*   By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/02 09:36:08 by edi-maio          #+#    #+#             */
-/*   Updated: 2026/05/05 07:07:38 by edi-maio         ###   ########.fr       */
+/*   Updated: 2026/05/06 21:26:47 by edi-maio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	start(t_game *game)
 {
 	if (!set_data(game))
 	{
-		print_error("Failed to initialize graphics");
+		print_error("Failed to initialize graphics\n", game);
 		free_all(game);
 	}
 	mlx_put_image_to_window(game->mlxptr, game->mlxwinptr, game->img.img, 0, 0);

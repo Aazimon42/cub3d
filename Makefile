@@ -6,13 +6,13 @@
 #    By: edi-maio <edi-maio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/25 19:03:13 by edi-maio          #+#    #+#              #
-#    Updated: 2026/05/05 07:12:24 by edi-maio         ###   ########.fr        #
+#    Updated: 2026/05/06 21:38:05 by edi-maio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc 
 CFLAGS = -Wall -Werror -Wextra -g -O3
-NAME = cub3d
+NAME = cub3D
 LIBFT = libft/libft.a
 SRC_DIR = srcs/
 SRCS = $(SRC_DIR)main.c \
